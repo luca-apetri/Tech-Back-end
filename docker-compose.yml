@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  postgresql_data_container:
+    image: 'postgres:15.2-alpine'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: Intelligent-Forms
+    env_file:
+      - ./.env
+    ports:
+      - "5433:5432"
+    expose:
+      - "5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  numele_aplicatiei_tale:
+    image: Intelligent-Forms-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql_data_container:5432/Intelligent-Forms
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgresql_data_container
+    env_file:
+      - ./.env
+volumes:
+  postgresql_data_container:

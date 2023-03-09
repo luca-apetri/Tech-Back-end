@@ -1,0 +1,28 @@
+FROM openjdk:17-alpine
+
+
+
+# Install necessary tools
+RUN apk add --no-cache \
+    bash \
+    curl \
+    dos2unix \
+    && rm -rf /var/cache/apk/*
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project files
+COPY . .
+
+# Convert script file line endings to Unix format
+RUN dos2unix mvnw && chmod +x mvnw
+
+# Download and cache project dependencies
+RUN ./mvnw dependency:go-offline
+
+# Expose port 8080
+EXPOSE 8080
+
+# Run the Spring Boot application
+CMD ["./mvnw", "spring-boot:run"]
