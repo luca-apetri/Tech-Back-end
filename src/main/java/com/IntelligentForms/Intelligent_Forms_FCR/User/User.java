@@ -6,23 +6,23 @@ public class User {
     private UUID userId;
     private String nume;
     private String prenume;
-    private String adresa;
     private UUID[] forms;
+    private String adresa;
     private String companyName;
     private String fiscalCode;
     public AccountType accountType;
     private String email;
     private String parola;
-    enum AccountType {
+    public enum AccountType {
         PUBLIC_INSTITUTION, COMPANY
     }
 
-    public User(UUID userId, String nume, String prenume, String adresa, UUID[] forms, String companyName, String fiscalCode, AccountType accountType, String email, String parola) {
+    public User(UUID userId, String nume, String prenume, UUID[] forms, String adresa, String companyName, String fiscalCode, AccountType accountType, String email, String parola) {
         this.userId = userId;
         this.nume = nume;
         this.prenume = prenume;
-        this.adresa = adresa;
         this.forms = forms;
+        this.adresa = adresa;
         this.companyName = companyName;
         this.fiscalCode = fiscalCode;
         this.accountType = accountType;
