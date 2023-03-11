@@ -1,6 +1,7 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Submission;
 
 import com.IntelligentForms.Intelligent_Forms_FCR.Form.Form;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Repository
@@ -31,9 +33,13 @@ public class SubmissionRepository {
             UUID submissionForm = UUID.fromString(resultSet.getString("SubmissionForm"));
 
             JSONObject submissionValues = new JSONObject( resultSet.getString("SubmissionValues"));
+//            JSONArray submissionValuesArray = new JSONArray(submissionValues.toMap());
+
+            Map<String, ?> submissions = submissionValues.toMap();
 
 
-            return new Submission(submissionID, submissionForm, submissionValues);
+
+            return new Submission(submissionID, submissionForm, submissions);
         };
     }
 }
