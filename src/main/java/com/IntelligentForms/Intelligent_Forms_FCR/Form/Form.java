@@ -1,5 +1,6 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
+import java.util.Map;
 import java.util.UUID;
 import org.json.JSONObject;
 
@@ -7,10 +8,10 @@ public class Form {
     private UUID formId;
     private String formName;
     private UUID formOwner;
-    private JSONObject dynamicFields;
+    private Map<String, ?> dynamicFields;
     private UUID[] formSubmissions;
 
-    public Form(UUID formId, String formName, UUID formOwner, JSONObject dynamicFields, UUID[] formSubmissions) {
+    public Form(UUID formId, String formName, UUID formOwner, Map<String, ?> dynamicFields, UUID[] formSubmissions) {
         this.formId = formId;
         this.formName = formName;
         this.formOwner = formOwner;
@@ -30,10 +31,9 @@ public class Form {
         return formOwner;
     }
 
-    public JSONObject getDynamicFields() {
+    public Map<String, ?> getDynamicFields() {
         return dynamicFields;
     }
-
     public UUID[] getFormSubmissions() {
         return formSubmissions;
     }

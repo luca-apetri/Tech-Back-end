@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Repository
@@ -41,9 +42,11 @@ public class FormRepository {
             }
 
             JSONObject dynamicFields = new JSONObject( resultSet.getString("dynamicFields"));
+            Map<String , ?> dynamicFieldMap = dynamicFields.toMap();
 
 
-            return new Form(formID, nume, formOwner, dynamicFields, submissions);
+
+            return new Form(formID, nume, formOwner, dynamicFieldMap, submissions);
         };
     }
 }
