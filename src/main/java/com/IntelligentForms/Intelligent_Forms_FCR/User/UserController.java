@@ -1,9 +1,7 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,5 +19,11 @@ public class UserController {
     @GetMapping
     private List<User> getAllUsers(){
         return userService.GetAllUsers();
+    }
+
+    @PostMapping
+    public void addNewUser(@RequestBody User user)
+    {
+        userService.addNewUser(user);
     }
 }

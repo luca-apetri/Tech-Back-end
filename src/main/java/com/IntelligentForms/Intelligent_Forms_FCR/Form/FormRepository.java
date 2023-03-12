@@ -1,6 +1,7 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
 import com.IntelligentForms.Intelligent_Forms_FCR.User.User;
+import com.IntelligentForms.Intelligent_Forms_FCR.User.UserRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,19 +35,13 @@ public class FormRepository {
             String submissionsString = resultSet.getString("formSubmissions");
 
             //Conversie din String in Array de UUID
-            String[] submissionsStringSplit = submissionsString.replace("{", "").replace("}","").strip().split(",");
-            UUID[] submissions = new UUID[submissionsStringSplit.length];
-            for(int iterator = 0; iterator < submissions.length; iterator++)
-            {
-                submissions[iterator] = UUID.fromString(submissionsStringSplit[iterator]);
-            }
+           UUID[] submissions = UserRepository.ArrayFromString(submissionsString);
 
             JSONObject dynamicFields = new JSONObject( resultSet.getString("dynamicFields"));
-            Map<String , ?> dynamicFieldMap = dynamicFields.toMap();
 
 
 
-            return new Form(formID, nume, formOwner, dynamicFieldMap, submissions);
+            return new Form(formID, nume, formOwner, dynamicFields, submissions);
         };
     }
 }

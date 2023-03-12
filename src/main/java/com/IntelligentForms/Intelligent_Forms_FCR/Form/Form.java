@@ -1,7 +1,10 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.json.JSONObject;
 
 public class Form {
@@ -11,11 +14,17 @@ public class Form {
     private Map<String, ?> dynamicFields;
     private UUID[] formSubmissions;
 
-    public Form(UUID formId, String formName, UUID formOwner, Map<String, ?> dynamicFields, UUID[] formSubmissions) {
+    public Form(@JsonProperty("FormID") UUID formId,
+                @JsonProperty("FormName") String formName,
+                @JsonProperty("FormOwner") UUID formOwner,
+                @JsonProperty("DynamicFields") JSONObject dynamicFields,
+                @JsonProperty("FormSubmissions") UUID[] formSubmissions) {
+        Map<String, ?> dynamicFieldMap = dynamicFields.toMap();
+
         this.formId = formId;
         this.formName = formName;
         this.formOwner = formOwner;
-        this.dynamicFields = dynamicFields;
+        this.dynamicFields = dynamicFieldMap;
         this.formSubmissions = formSubmissions;
     }
 
@@ -36,5 +45,16 @@ public class Form {
     }
     public UUID[] getFormSubmissions() {
         return formSubmissions;
+    }
+
+    @Override
+    public String toString() {
+        return "Form{" +
+                "formId=" + formId +
+                ", formName='" + formName + '\'' +
+                ", formOwner=" + formOwner +
+                ", dynamicFields=" + dynamicFields.toString() +
+                ", formSubmissions=" + Arrays.toString(formSubmissions) +
+                '}';
     }
 }

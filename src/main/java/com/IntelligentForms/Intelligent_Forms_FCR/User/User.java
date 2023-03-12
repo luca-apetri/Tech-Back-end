@@ -1,5 +1,8 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.User;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Arrays;
 import java.util.UUID;
 
 public class User {
@@ -17,7 +20,22 @@ public class User {
         PUBLIC_INSTITUTION, COMPANY
     }
 
-    public User(UUID userId, String nume, String prenume, UUID[] forms, String adresa, String companyName, String fiscalCode, AccountType accountType, String email, String parola) {
+    public User(@JsonProperty("UserID") UUID userId,
+                @JsonProperty("Nume") String nume,
+                @JsonProperty("Prenume") String prenume,
+                @JsonProperty("Forms") UUID[] forms,
+                @JsonProperty("Adresa") String adresa,
+                @JsonProperty("CompanyName") String companyName,
+                @JsonProperty("FiscalCode") String fiscalCode,
+                @JsonProperty("AccountType") String accountType,
+                @JsonProperty("Email") String email,
+                @JsonProperty("Parola") String parola)
+    {
+        AccountType accountType1;
+        if(accountType == "Company")
+            accountType1 = AccountType.COMPANY;
+        else accountType1 = AccountType.PUBLIC_INSTITUTION;
+
         this.userId = userId;
         this.nume = nume;
         this.prenume = prenume;
@@ -25,7 +43,7 @@ public class User {
         this.adresa = adresa;
         this.companyName = companyName;
         this.fiscalCode = fiscalCode;
-        this.accountType = accountType;
+        this.accountType = accountType1;
         this.email = email;
         this.parola = parola;
     }
@@ -68,5 +86,34 @@ public class User {
 
     public String getParola() {
         return parola;
+    }
+
+    // Returneaza forms[] ca si un Array formatat pentru SQL
+    public String getFormsString()
+    {
+        String returnString = "{";
+        for(int i = 0; i < forms.length - 1; i++)
+        {
+            returnString = returnString + ("\"" + forms[i].toString() + "\", ");
+        }
+        returnString = returnString + ("\"" + forms[forms.length - 1].toString() + "\"}");
+        return returnString;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", nume='" + nume + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", forms=" + Arrays.toString(forms) +
+                ", adresa='" + adresa + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", fiscalCode='" + fiscalCode + '\'' +
+                ", accountType=" + accountType +
+                ", email='" + email + '\'' +
+                ", parola='" + parola + '\'' +
+                '}';
     }
 }

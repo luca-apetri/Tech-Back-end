@@ -3,9 +3,7 @@ package com.IntelligentForms.Intelligent_Forms_FCR.Submission;
 import com.fasterxml.jackson.databind.JsonSerializable;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -22,8 +20,14 @@ public class SubmissionController {
     }
 
     @GetMapping
-    private List<Submission> getAllSubmissions()
+    public List<Submission> getAllSubmissions()
     {
         return submissionService.getAllSubmitions();
+    }
+
+    @PostMapping
+    public void addNewSubmission(@RequestBody Submission submission)
+    {
+        submissionService.addNewSubmission(submission);
     }
 }

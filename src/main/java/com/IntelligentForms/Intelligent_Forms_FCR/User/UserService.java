@@ -8,6 +8,7 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
+    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -16,5 +17,10 @@ public class UserService {
     public List<User> GetAllUsers()
     {
         return userRepository.SelectAllUsers();
+    }
+
+    public void addNewUser(User user)
+    {
+        userRepository.insertUser(user);
     }
 }
