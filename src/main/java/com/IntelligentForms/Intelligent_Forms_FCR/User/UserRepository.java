@@ -1,5 +1,6 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.User;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -84,6 +85,7 @@ public class UserRepository {
 
             String email = resultSet.getString("Email");
             String parola = resultSet.getString("Parola");
+
 
             return new User(userID, nume, prenume, forms, adresa, companyName, fiscalCode, accountType, email, parola);
         };

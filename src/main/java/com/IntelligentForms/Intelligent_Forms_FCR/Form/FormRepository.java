@@ -1,6 +1,5 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
-import com.IntelligentForms.Intelligent_Forms_FCR.User.User;
 import com.IntelligentForms.Intelligent_Forms_FCR.User.UserRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Repository
@@ -38,11 +39,10 @@ public class FormRepository {
                 "uuid_generate_v4(), " +
                 "'" + form.getFormName() + "', " +
                 "'" + form.getFormOwner() + "', " +
+                "'" + form.formatDynamicFields() + "', " +
                 "'" + form.getSubmissionsString() + "', " +
-                "'" + form.getFormSubmissions() + "', " +
-                "'" + form.getFormText() + "', " +
-                form.mapToSqlQuery() + ");";
-
+                "'" + form.getFormText() + "'" +
+                ");";
         return jdbcTemplate.update(sql);
     }
 
@@ -56,13 +56,12 @@ public class FormRepository {
 
             //Conversie din String in Array de UUID
             UUID[] submissions = UserRepository.ArrayFromString(submissionsString);
-
-            JSONObject dynamicFields = new JSONObject( resultSet.getString("dynamicFields"));
-
-            return new Form(formID, nume, formOwner, dynamicFields, formText, submissions);
+            JSONObject dynamicFields = new JSONObject(resultSet.getString("dynamicFields"));
+            Map<String, ?> dynamicFieldMap = dynamicFields.toMap();
+            //System.out.println(dynamicFields.toString());
+            return new Form(formID, nume, formOwner, (Map<String, ArrayList<Sectiune>>) dynamicFieldMap, formText, submissions);
         };
     }
-
     public List<Form> getFormsOfUser(UUID userID) {
         String sql = "SELECT * FROM forms WHERE \"FormOwner\" = '" + userID.toString() + "';";
         List<Form> forms= jdbcTemplate.query(sql, getUserRowMapper());

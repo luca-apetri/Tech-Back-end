@@ -1,34 +1,32 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.json.JSONObject;
 
 public class Form {
     private UUID formId;
     private String formName;
     private UUID formOwner;
-    private Map<String, ?> dynamicFields;
+    private Map<String, ArrayList<Sectiune>> dynamicFields;
     private String formText;
-
-
     private UUID[] formSubmissions;
 
     public Form(@JsonProperty("FormID") UUID formId,
                 @JsonProperty("FormName") String formName,
                 @JsonProperty("FormOwner") UUID formOwner,
-                @JsonProperty("DynamicFields") JSONObject dynamicFields,
+                @JsonProperty("DynamicFields") Map<String, ArrayList<Sectiune>> dynamicFields,
                 @JsonProperty("FormText") String formText,
                 @JsonProperty("FormSubmissions") UUID[] formSubmissions) {
-        Map<String, ?> dynamicFieldMap = dynamicFields.toMap();
+        //Map<String, ?> dynamicFieldMap = dynamicFields.to;
 
         this.formId = formId;
         this.formName = formName;
         this.formOwner = formOwner;
-        this.dynamicFields = dynamicFieldMap;
+        this.dynamicFields = dynamicFields;
         this.formSubmissions = formSubmissions;
         this.formText = formText;
 
@@ -46,9 +44,10 @@ public class Form {
         return formOwner;
     }
 
-    public Map<String, ?> getDynamicFields() {
+    public Map<String, ArrayList<Sectiune>> getDynamicFields() {
         return dynamicFields;
     }
+
     public UUID[] getFormSubmissions() {
         return formSubmissions;
     }
@@ -69,28 +68,35 @@ public class Form {
                 '}';
     }
 
+    public String formatDynamicFields()
+    {
+        String returnString = dynamicFields.toString();
+        returnString = returnString.replace("=", "\":").replace("section","\"section");
+        return returnString;
+    }
+
     public String getSubmissionsString()
     {
         if(formSubmissions != null) {
-            String returnString = "{";
-            for (int i = 0; i < formSubmissions.length - 1; i++) {
-                returnString = returnString + ("\"" + formSubmissions[i].toString() + "\", ");
+            StringBuilder returnString = new StringBuilder("{");
+            for (int i = 0; i < formSubmissions.length; i++) {
+                returnString.append("\"" + formSubmissions[i].toString() + "\", ");
             }
-            returnString = returnString + ("\"" + formSubmissions[formSubmissions.length - 1].toString() + "\"}");
-            return returnString;
+            returnString.delete(returnString.length() - 2, returnString.length()).append("}");
+            return returnString.toString();
         }
         return "{}";
     }
 
-    public String mapToSqlQuery()
-    {
-        StringBuilder returnString = new StringBuilder("'{");
-        for(String key: dynamicFields.keySet()){
-            returnString.append("\"" + key + "\":" + mapToString((Map<String, String>) dynamicFields.get(key)) + ", ");
-        }
-        returnString.delete(returnString.length() - 2, returnString.length()).append("}'");
-        return returnString.toString();
-    }
+//    public String mapToSqlQuery()
+//    {
+//        StringBuilder returnString = new StringBuilder("'{");
+//        for(String key: dynamicFields.keySet()){
+//            returnString.append("\"" + key + "\":" + mapToString((Map<String, String>) dynamicFields.get(key)) + ", ");
+//        }
+//        returnString.delete(returnString.length() - 2, returnString.length()).append("}'");
+//        return returnString.toString();
+//    }
 
     public String mapToString(Map<String, String> map)
     {
@@ -102,4 +108,6 @@ public class Form {
         stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length()).append("}");
         return stringBuilder.toString();
     }
+
+
 }
