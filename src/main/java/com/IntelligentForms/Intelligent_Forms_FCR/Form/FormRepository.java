@@ -1,5 +1,6 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
+import com.IntelligentForms.Intelligent_Forms_FCR.User.User;
 import com.IntelligentForms.Intelligent_Forms_FCR.User.UserRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,12 @@ public class FormRepository {
 
             return new Form(formID, nume, formOwner, dynamicFields, formText, submissions);
         };
+    }
+
+    public List<Form> getFormsOfUser(UUID userID) {
+        String sql = "SELECT * FROM forms WHERE \"FormOwner\" = '" + userID.toString() + "';";
+        List<Form> forms= jdbcTemplate.query(sql, getUserRowMapper());
+        return forms;
     }
 }
 

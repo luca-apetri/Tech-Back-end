@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class SubmissionService
 {
@@ -24,5 +26,9 @@ public class SubmissionService
     public void addNewSubmission(Submission submission)
     {
         submissionRepository.insertSubmission(submission);
+    }
+
+    public List<Submission> getSubmissionsOfForm(UUID formID) {
+        return submissionRepository.getSubmissionsOfForm(formID);
     }
 }

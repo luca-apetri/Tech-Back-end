@@ -56,4 +56,10 @@ public class SubmissionRepository {
             return new Submission(submissionID, submissionForm, submissions);
         };
     }
+
+    public List<Submission> getSubmissionsOfForm(UUID formID) {
+        String sql = "SELECT * FROM submissions WHERE \"SubmissionForm\" = '" + formID.toString() + "';";
+        List<Submission> submissions= jdbcTemplate.query(sql, getUserRowMapper());
+        return submissions;
+    }
 }

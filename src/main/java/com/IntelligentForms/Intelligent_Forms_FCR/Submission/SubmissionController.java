@@ -25,6 +25,12 @@ public class SubmissionController {
         return submissionService.getAllSubmitions();
     }
 
+    @GetMapping(path = "{FormID}")
+    public List<Submission> getSubmissionsOfForm(@PathVariable("FormID") UUID formID)
+    {
+        return submissionService.getSubmissionsOfForm(formID);
+    }
+
     @PostMapping
     public void addNewSubmission(@RequestBody Submission submission)
     {

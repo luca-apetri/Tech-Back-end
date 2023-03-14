@@ -22,6 +22,12 @@ public class FormController {
         return formService.getAllForms();
     }
 
+    @GetMapping(path = "{UserID}")
+    public List<Form> getFormsOfUser(@PathVariable("UserID") UUID userID)
+    {
+        return formService.getFormsOfUser(userID);
+    }
+
     @PostMapping
     public void addNewForm(@RequestBody Form form)
     {
