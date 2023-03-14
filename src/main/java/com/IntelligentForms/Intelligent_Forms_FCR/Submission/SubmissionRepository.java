@@ -35,7 +35,7 @@ public class SubmissionRepository {
                 "\"SubmissionForm\", " +
                 "\"SubmissionValues\") " +
                 "VALUES(" +
-                "'" + submission.getSubmissionId() + "', " +
+                "uuid_generate_v4(), " +
                 "'" + submission.getSubmissionForm() + "', "
                 + submission.mapToSqlQuery() + ");";
 
