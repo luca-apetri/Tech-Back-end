@@ -1,21 +1,31 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.User;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 public class User {
-    private UUID userId;
-    private String nume;
-    private String prenume;
-    private UUID[] forms;
-    private String adresa;
-    private String companyName;
-    private String fiscalCode;
+    @NotBlank
+    private final UUID userId;
+    @NotBlank
+    private final String nume;
+    @NotBlank
+    private final String prenume;
+    private final UUID[] forms;
+    @NotBlank
+    private final String adresa;
+    private final String companyName;
+    private final String fiscalCode;
+    @NotBlank
     public AccountType accountType;
-    private String email;
-    private String parola;
+    @NotBlank
+    private final String email;
+    @NotBlank
+    private final String parola;
     public enum AccountType {
         PUBLIC_INSTITUTION, COMPANY
     }
@@ -32,7 +42,7 @@ public class User {
                 @JsonProperty("Parola") String parola)
     {
         AccountType accountType1;
-        if(accountType == "Company")
+        if(Objects.equals(accountType, "Company"))
             accountType1 = AccountType.COMPANY;
         else accountType1 = AccountType.PUBLIC_INSTITUTION;
 
@@ -91,13 +101,15 @@ public class User {
     // Returneaza forms[] ca si un Array formatat pentru SQL
     public String getFormsString()
     {
-        String returnString = "{";
-        for(int i = 0; i < forms.length - 1; i++)
-        {
-            returnString = returnString + ("\"" + forms[i].toString() + "\", ");
+        if(forms != null) {
+            String returnString = "{";
+            for (int i = 0; i < forms.length - 1; i++) {
+                returnString = returnString + ("\"" + forms[i].toString() + "\", ");
+            }
+            returnString = returnString + ("\"" + forms[forms.length - 1].toString() + "\"}");
+            return returnString;
         }
-        returnString = returnString + ("\"" + forms[forms.length - 1].toString() + "\"}");
-        return returnString;
+        return "{}";
     }
 
 

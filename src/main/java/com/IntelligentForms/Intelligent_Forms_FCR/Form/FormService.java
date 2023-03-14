@@ -19,4 +19,8 @@ public class FormService
     {
         return formRepository.SelectAllForms();
     }
+
+    public void addNewForm(Form form) {
+        formRepository.insertForm(form);
+    }
 }

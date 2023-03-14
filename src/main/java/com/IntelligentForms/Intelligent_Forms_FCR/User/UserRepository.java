@@ -36,7 +36,7 @@ public class UserRepository {
                 "\"Email\", " +
                 "\"Parola\") " +
                 "values (" +
-                "'" + user.getUserId() + "', " +
+                "uuid_generate_v4(), " +
                 "'" + user.getNume() + "', " +
                 "'" + user.getPrenume() + "', " +
                 "'" + user.getFormsString() + "', " +
@@ -54,9 +54,20 @@ public class UserRepository {
 
     }
 
+    boolean isEmailTaken(String email)
+    {
+        String sql = "" +
+                "SELECT EXISTS ( " +
+                " SELECT 1 " +
+                " FROM USERS " +
+                " WHERE \"Email\" = ?" +
+                ");";
+        return jdbcTemplate.queryForObject(sql, new Object[] {email}, (resultSet, i)->resultSet.getBoolean(1));
+    }
+
     private static RowMapper<User> getUserRowMapper() {
         return (resultSet, i) -> {
-            UUID userID = UUID.fromString(resultSet.getString("userid"));
+            UUID userID = UUID.fromString(resultSet.getString("UserID"));
             String nume = resultSet.getString("Nume");
             String prenume = resultSet.getString("Prenume");
 
@@ -78,8 +89,10 @@ public class UserRepository {
         };
     }
 
-    public static UUID[] ArrayFromString(String formsStrings) {
-        String[] formsStringSplit = formsStrings.replace("{", "").replace("}","").strip().split(",");
+
+
+    public static UUID[] ArrayFromString(String formsString) {
+        String[] formsStringSplit = formsString.replace("{", "").replace("}","").strip().split(",");
         UUID[] forms = new UUID[formsStringSplit.length];
         for(int iterator = 0; iterator < forms.length; iterator++)
         {
@@ -89,4 +102,9 @@ public class UserRepository {
     }
 
 
+    public User getUserById(UUID userID) {
+        String sql = "SELECT * FROM users WHERE \"UserID\" = '" + userID.toString() + "';";
+        List<User> user= jdbcTemplate.query(sql, getUserRowMapper());
+        return user.get(0);
+    }
 }

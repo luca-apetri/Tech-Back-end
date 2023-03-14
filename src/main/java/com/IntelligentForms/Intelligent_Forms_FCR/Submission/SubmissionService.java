@@ -20,4 +20,9 @@ public class SubmissionService
     {
         return submissionRepository.SelectAllSubmissions();
     }
+
+    public void addNewSubmission(Submission submission)
+    {
+        submissionRepository.insertSubmission(submission);
+    }
 }

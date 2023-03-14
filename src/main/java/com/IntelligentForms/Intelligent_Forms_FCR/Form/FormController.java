@@ -25,7 +25,7 @@ public class FormController {
     @PostMapping
     public void addNewForm(@RequestBody Form form)
     {
-        System.out.println(form);
+            formService.addNewForm(form);
     }
 
 }

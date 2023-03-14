@@ -11,10 +11,10 @@ CREATE TABLE IF NOT EXISTS "users" (
                         "UserID" uuid   NOT NULL UNIQUE,
                         "Nume" varchar(100)   NOT NULL,
                         "Prenume" varchar(100)   NOT NULL,
-                        "Forms" uuid[]   NOT NULL,
+                        "Forms" uuid[],
                         "Adresa" varchar(100)   NOT NULL,
-                        "CompanyName" varchar(100)   NOT NULL,
-                        "FiscalCode" varchar(100)   NOT NULL,
+                        "CompanyName" varchar(100),
+                        "FiscalCode" varchar(100),
                         "AccountType" varchar(20)   NOT NULL,
                         "Email" varchar(100)   NOT NULL,
                         "Parola" varchar(50)   NOT NULL,
@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS "forms" (
                          "FormName" varchar(50)   NOT NULL,
                          "FormOwner" uuid   NOT NULL,
                          "DynamicFields" json   NOT NULL,
-                         "FormSubmissions" uuid[]   NOT NULL
+                         "FormSubmissions" uuid[],
+                         "FormText" varchar(2000)
 );
 
 CREATE TABLE IF NOT EXISTS "submissions" (
@@ -39,5 +40,7 @@ CREATE TABLE IF NOT EXISTS "submissions" (
 
 ALTER TABLE "forms" ADD CONSTRAINT "fk_Forms_FormOwner" FOREIGN KEY("FormOwner")
     REFERENCES "users" ("UserID");
+ALTER TABLE "submissions" ADD CONSTRAINT "fk_Submissions_SubmissionForm" FOREIGN KEY("SubmissionForm")
+    REFERENCES "forms" ("FormID");
 
 
