@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FormService
@@ -18,5 +19,13 @@ public class FormService
     public List<Form> getAllForms()
     {
         return formRepository.SelectAllForms();
+    }
+
+    public void addNewForm(Form form) {
+        formRepository.insertForm(form);
+    }
+
+    public List<Form> getFormsOfUser(UUID userID) {
+        return formRepository.getFormsOfUser(userID);
     }
 }

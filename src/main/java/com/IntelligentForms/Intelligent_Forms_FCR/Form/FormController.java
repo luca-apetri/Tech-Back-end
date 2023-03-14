@@ -1,9 +1,7 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -23,4 +21,17 @@ public class FormController {
     public List<Form> getAllForms(){
         return formService.getAllForms();
     }
+
+    @GetMapping(path = "{UserID}")
+    public List<Form> getFormsOfUser(@PathVariable("UserID") UUID userID)
+    {
+        return formService.getFormsOfUser(userID);
+    }
+
+    @PostMapping
+    public void addNewForm(@RequestBody Form form)
+    {
+            formService.addNewForm(form);
+    }
+
 }

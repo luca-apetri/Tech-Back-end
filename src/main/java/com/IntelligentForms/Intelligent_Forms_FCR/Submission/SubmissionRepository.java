@@ -1,6 +1,8 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Submission;
 
 import com.IntelligentForms.Intelligent_Forms_FCR.Form.Form;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,23 @@ public class SubmissionRepository {
     }
 
     public List<Submission> SelectAllSubmissions(){
-        // String sql = "SELECT userid, Nume, Prenume, Forms, Adresa, CompanyName, FiscalCode, AccountType, Email, Parola FROM users";
         String sql = "SELECT * FROM submissions";
         List<Submission> submissions = jdbcTemplate.query(sql, getUserRowMapper());
         return submissions;
+    }
+
+    public int insertSubmission(Submission submission)
+    {
+        String sql = "INSERT INTO SUBMISSIONS (" +
+                "\"SubmissionID\", " +
+                "\"SubmissionForm\", " +
+                "\"SubmissionValues\") " +
+                "VALUES(" +
+                "uuid_generate_v4(), " +
+                "'" + submission.getSubmissionForm() + "', "
+                + submission.mapToSqlQuery() + ");";
+
+                return jdbcTemplate.update(sql);
     }
 
     private static RowMapper<Submission> getUserRowMapper() {
@@ -33,13 +48,18 @@ public class SubmissionRepository {
             UUID submissionForm = UUID.fromString(resultSet.getString("SubmissionForm"));
 
             JSONObject submissionValues = new JSONObject( resultSet.getString("SubmissionValues"));
-//            JSONArray submissionValuesArray = new JSONArray(submissionValues.toMap());
 
-            Map<String, ?> submissions = submissionValues.toMap();
+            Map<String, Object> submissions = submissionValues.toMap();
 
 
 
             return new Submission(submissionID, submissionForm, submissions);
         };
+    }
+
+    public List<Submission> getSubmissionsOfForm(UUID formID) {
+        String sql = "SELECT * FROM submissions WHERE \"SubmissionForm\" = '" + formID.toString() + "';";
+        List<Submission> submissions= jdbcTemplate.query(sql, getUserRowMapper());
+        return submissions;
     }
 }
