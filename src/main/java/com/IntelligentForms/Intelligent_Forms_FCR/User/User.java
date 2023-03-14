@@ -101,7 +101,7 @@ public class User {
     // Returneaza forms[] ca si un Array formatat pentru SQL
     public String getFormsString()
     {
-        if(forms != null) {
+        if(forms != null && forms.length != 0) {
             String returnString = "{";
             for (int i = 0; i < forms.length - 1; i++) {
                 returnString = returnString + ("\"" + forms[i].toString() + "\", ");

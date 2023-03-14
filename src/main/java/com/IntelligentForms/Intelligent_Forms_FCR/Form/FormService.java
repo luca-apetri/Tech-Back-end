@@ -22,10 +22,18 @@ public class FormService
     }
 
     public void addNewForm(Form form) {
-        formRepository.insertForm(form);
+
+        UUID formID = UUID.randomUUID();
+        int success = formRepository.insertForm(form, formID);
+        if(success == 1)
+        {
+           formRepository.insertFormIntoUser(formID, form.getFormOwner());
+        }
     }
 
     public List<Form> getFormsOfUser(UUID userID) {
         return formRepository.getFormsOfUser(userID);
     }
+
+
 }

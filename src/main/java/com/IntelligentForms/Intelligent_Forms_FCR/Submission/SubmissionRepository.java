@@ -1,11 +1,13 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Submission;
 
 import com.IntelligentForms.Intelligent_Forms_FCR.Form.Form;
+import com.IntelligentForms.Intelligent_Forms_FCR.exception.ApiRequestException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -39,7 +41,12 @@ public class SubmissionRepository {
                 "'" + submission.getSubmissionForm() + "', "
                 + submission.mapToSqlQuery() + ");";
 
-                return jdbcTemplate.update(sql);
+        try {
+            return jdbcTemplate.update(sql);
+        }catch (DataIntegrityViolationException e)
+        {
+            throw new ApiRequestException("Formularul cu Id:" + submission.getSubmissionForm() + " nu exista");
+        }
     }
 
     private static RowMapper<Submission> getUserRowMapper() {

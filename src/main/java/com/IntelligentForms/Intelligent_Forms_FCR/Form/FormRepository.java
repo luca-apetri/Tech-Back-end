@@ -1,8 +1,10 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
 import com.IntelligentForms.Intelligent_Forms_FCR.User.UserRepository;
+import com.IntelligentForms.Intelligent_Forms_FCR.exception.ApiRequestException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -26,7 +28,7 @@ public class FormRepository {
         return forms;
     }
 
-    public int insertForm(Form form)
+    public int insertForm(Form form, UUID formID)
     {
         String sql = "INSERT INTO FORMS (" +
                 "\"FormID\", " +
@@ -36,14 +38,22 @@ public class FormRepository {
                 "\"FormSubmissions\", " +
                 "\"FormText\") " +
                 "VALUES(" +
-                "uuid_generate_v4(), " +
+                "'" + formID + "', " +
                 "'" + form.getFormName() + "', " +
                 "'" + form.getFormOwner() + "', " +
                 "'" + form.formatDynamicFields() + "', " +
                 "'" + form.getSubmissionsString() + "', " +
                 "'" + form.getFormText() + "'" +
                 ");";
-        return jdbcTemplate.update(sql);
+
+        try {
+            return jdbcTemplate.update(sql);
+        }catch (DataIntegrityViolationException e)
+        {
+            e.printStackTrace();
+            throw new ApiRequestException("Utilizatorul cu Id:" + form.getFormOwner() + " nu exista");
+        }
+
     }
 
     private static RowMapper<Form> getUserRowMapper() {
@@ -66,6 +76,14 @@ public class FormRepository {
         String sql = "SELECT * FROM forms WHERE \"FormOwner\" = '" + userID.toString() + "';";
         List<Form> forms= jdbcTemplate.query(sql, getUserRowMapper());
         return forms;
+    }
+
+    public void insertFormIntoUser(UUID formID, UUID userID)
+    {
+        String sqlUpdate = "" + "UPDATE Users SET \"Forms\" = \"Forms\" || '{\"" + formID + "\"}' WHERE \"UserID\" = '" + userID + "';";
+       // update player_scores set round_scores = array_append(round_scores, 100);
+        System.out.println(sqlUpdate);
+        jdbcTemplate.update(sqlUpdate);
     }
 }
 

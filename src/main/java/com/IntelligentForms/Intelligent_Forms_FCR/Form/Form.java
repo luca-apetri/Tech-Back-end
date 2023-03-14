@@ -77,7 +77,7 @@ public class Form {
 
     public String getSubmissionsString()
     {
-        if(formSubmissions != null) {
+        if(formSubmissions != null && formSubmissions.length != 0) {
             StringBuilder returnString = new StringBuilder("{");
             for (int i = 0; i < formSubmissions.length; i++) {
                 returnString.append("\"" + formSubmissions[i].toString() + "\", ");

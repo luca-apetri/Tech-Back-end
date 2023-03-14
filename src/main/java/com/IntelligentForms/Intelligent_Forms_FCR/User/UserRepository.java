@@ -55,6 +55,8 @@ public class UserRepository {
 
     }
 
+
+
     boolean isEmailTaken(String email)
     {
         String sql = "" +
@@ -91,16 +93,19 @@ public class UserRepository {
         };
     }
 
-
-
     public static UUID[] ArrayFromString(String formsString) {
-        String[] formsStringSplit = formsString.replace("{", "").replace("}","").strip().split(",");
-        UUID[] forms = new UUID[formsStringSplit.length];
-        for(int iterator = 0; iterator < forms.length; iterator++)
+        if(formsString.compareTo("{}") != 0)
         {
-            forms[iterator] = UUID.fromString(formsStringSplit[iterator]);
+            String[] formsStringSplit = formsString.replace("{", "").replace("}","").strip().split(",");
+            UUID[] forms = new UUID[formsStringSplit.length];
+            for(int iterator = 0; iterator < forms.length; iterator++)
+            {
+                forms[iterator] = UUID.fromString(formsStringSplit[iterator]);
+            }
+            return forms;
+
         }
-        return forms;
+        return null;
     }
 
 
