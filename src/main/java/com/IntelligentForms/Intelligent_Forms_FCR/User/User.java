@@ -3,10 +3,13 @@ package com.IntelligentForms.Intelligent_Forms_FCR.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
+
 
 public class User {
     @NotBlank

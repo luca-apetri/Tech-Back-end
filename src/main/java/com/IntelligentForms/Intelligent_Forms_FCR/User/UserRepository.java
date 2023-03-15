@@ -116,4 +116,26 @@ public class UserRepository {
         List<User> user= jdbcTemplate.query(sql, getUserRowMapper());
         return user.get(0);
     }
+
+    public User getUserByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE \"Email\" = '" + email + "';";
+        List<User> user= jdbcTemplate.query(sql, getUserRowMapper());
+        return user.get(0);
+    }
+
+    public String login(String email, String password)
+    {
+        String sql = "" +
+                "SELECT EXISTS ( " +
+                " SELECT 1 " +
+                " FROM USERS " +
+                " WHERE \"Email\" = ?" +
+                " AND \"Parola\" = ?" +
+                ");";
+        boolean success =  jdbcTemplate.queryForObject(sql, new Object[] {email, password}, (resultSet, i)->resultSet.getBoolean(1));
+        if(success)
+            return "login_successful";
+        else
+            return "login_not_successful";
+    }
 }

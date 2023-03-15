@@ -31,4 +31,8 @@ public class UserService {
     public User getUserById(UUID userID) {
         return userRepository.getUserById(userID);
     }
+
+    public String login(String email, String password) {
+        return userRepository.login(email, password);
+    }
 }

@@ -3,15 +3,13 @@ import com.azure.ai.formrecognizer.FormRecognizerClient;
 import com.azure.ai.formrecognizer.FormRecognizerClientBuilder;
 import com.azure.ai.formrecognizer.documentanalysis.DocumentAnalysisClient;
 import com.azure.ai.formrecognizer.documentanalysis.DocumentAnalysisClientBuilder;
-import com.azure.ai.formrecognizer.documentanalysis.models.AnalyzeDocumentOptions;
-import com.azure.ai.formrecognizer.documentanalysis.models.AnalyzeResult;
-import com.azure.ai.formrecognizer.documentanalysis.models.DocumentTable;
-import com.azure.ai.formrecognizer.documentanalysis.models.OperationResult;
+import com.azure.ai.formrecognizer.documentanalysis.models.*;
 import com.azure.ai.formrecognizer.models.*;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class FormRecognizer {
@@ -20,29 +18,77 @@ public class FormRecognizer {
 
     public static void main(String[] args) {
         try {
-            DocumentAnalysisClient client = new DocumentAnalysisClientBuilder()
+            DocumentAnalysisClient documentAnalysisClient = new DocumentAnalysisClientBuilder()
                     .credential(new AzureKeyCredential(API_KEY))
                     .endpoint(ENDPOINT)
                     .buildClient();
 
-            String documentUrl = "https://static.euronews.com/articles/stories/06/35/53/24/1440x810_cmsv2_548e11b5-0a57-53f4-88d9-5ea703413300-6355324.jpg";
-            String modelId = "prebuilt-idDocument";
-            SyncPoller<OperationResult, AnalyzeResult > analyzeDocumentPoller =
-                    client.beginAnalyzeDocumentFromUrl(modelId, documentUrl);
+            String receiptUrl = "https://raw.githubusercontent.com/Azure/azure-sdk-for-java/main/sdk/formrecognizer"
+                    + "/azure-ai-formrecognizer/src/samples/resources/sample-documents/receipts/contoso-allinone.jpg";
 
-            AnalyzeResult analyzeResult = analyzeDocumentPoller.getFinalResult();
+            SyncPoller<OperationResult, AnalyzeResult> analyzeReceiptPoller =
+                    documentAnalysisClient.beginAnalyzeDocumentFromUrl("prebuilt-receipt", receiptUrl);
 
+            AnalyzeResult receiptResults = analyzeReceiptPoller.getFinalResult();
 
-            // Key-value pairs
-            analyzeResult.getKeyValuePairs().forEach(documentKeyValuePair -> {
-                System.out.printf("Key content: %s%n", documentKeyValuePair.getKey().getContent());
-                System.out.printf("Key content bounding region: %s%n",
-                        documentKeyValuePair.getKey().getBoundingRegions().toString());
-                if (documentKeyValuePair.getValue() != null) {
-                    System.out.printf("Value content: %s%n", documentKeyValuePair.getValue().getContent());
-                    System.out.printf("Value content bounding region: %s%n", documentKeyValuePair.getValue().getBoundingRegions().toString());
+            for (int i = 0; i < receiptResults.getDocuments().size(); i++) {
+                AnalyzedDocument analyzedReceipt = receiptResults.getDocuments().get(i);
+                Map<String, DocumentField> receiptFields = analyzedReceipt.getFields();
+                System.out.printf("----------- Analyzing receipt info %d -----------%n", i);
+                DocumentField merchantNameField = receiptFields.get("MerchantName");
+                if (merchantNameField != null) {
+                    if (DocumentFieldType.STRING == merchantNameField.getType()) {
+                        String merchantName = merchantNameField.getValueAsString();
+                        System.out.printf("Merchant Name: %s, confidence: %.2f%n",
+                                merchantName, merchantNameField.getConfidence());
+                    }
                 }
-            });
+
+                DocumentField merchantPhoneNumberField = receiptFields.get("MerchantPhoneNumber");
+                if (merchantPhoneNumberField != null) {
+                    if (DocumentFieldType.PHONE_NUMBER == merchantPhoneNumberField.getType()) {
+                        String merchantAddress = merchantPhoneNumberField.getValueAsPhoneNumber();
+                        System.out.printf("Merchant Phone number: %s, confidence: %.2f%n",
+                                merchantAddress, merchantPhoneNumberField.getConfidence());
+                    }
+                }
+
+                DocumentField transactionDateField = receiptFields.get("TransactionDate");
+                if (transactionDateField != null) {
+                    if (DocumentFieldType.DATE == transactionDateField.getType()) {
+                        LocalDate transactionDate = transactionDateField.getValueAsDate();
+                        System.out.printf("Transaction Date: %s, confidence: %.2f%n",
+                                transactionDate, transactionDateField.getConfidence());
+                    }
+                }
+
+                var receiptItemsField = receiptFields.get("Items");
+                if (receiptItemsField != null) {
+                    System.out.printf("Receipt Items: %n");
+                    if (DocumentFieldType.LIST == receiptItemsField.getType()) {
+                        List<DocumentField> receiptItems = receiptItemsField.getValueAsList();
+                        receiptItems.stream()
+                                .filter(receiptItem -> DocumentFieldType.MAP == receiptItem.getType())
+                                .map(documentField -> documentField.getValueAsMap())
+                                .forEach(documentFieldMap -> documentFieldMap.forEach((key, documentField) -> {
+                                    if ("Name".equals(key)) {
+                                        if (DocumentFieldType.STRING == documentField.getType()) {
+                                            String name = documentField.getValueAsString();
+                                            System.out.printf("Name: %s, confidence: %.2fs%n",
+                                                    name, documentField.getConfidence());
+                                        }
+                                    }
+                                    if ("Quantity".equals(key)) {
+                                        if (DocumentFieldType.DOUBLE == documentField.getType()) {
+                                            Double quantity = documentField.getValueAsDouble();
+                                            System.out.printf("Quantity: %f, confidence: %.2f%n",
+                                                    quantity, documentField.getConfidence());
+                                        }
+                                    }
+                                }));
+                    }
+                }
+            }
 
 
 
