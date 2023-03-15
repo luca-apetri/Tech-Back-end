@@ -31,6 +31,12 @@ public class SubmissionController {
         return submissionService.getSubmissionsOfForm(formID);
     }
 
+    @DeleteMapping(path = "{SubmissionID}")
+    public void deleteSubmission(@PathVariable("SubmissionID") UUID submissionID)
+    {
+        submissionService.deleteSubmission(submissionID);
+    }
+
     @PostMapping
     public void addNewSubmission(@RequestBody Submission submission)
     {

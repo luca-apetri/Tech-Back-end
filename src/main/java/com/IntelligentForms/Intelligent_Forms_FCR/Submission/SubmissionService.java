@@ -36,4 +36,8 @@ public class SubmissionService
     public List<Submission> getSubmissionsOfForm(UUID formID) {
         return submissionRepository.getSubmissionsOfForm(formID);
     }
+
+    public void deleteSubmission(UUID submissionID) {
+        submissionRepository.deleteSubmission(submissionID);
+    }
 }

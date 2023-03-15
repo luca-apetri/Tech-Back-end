@@ -37,7 +37,7 @@ public class SubmissionRepository {
                 "\"CreationDate\", " +
                 "\"SubmissionValues\") " +
                 "VALUES(" +
-                "'" + submissionID +"', " +
+                "'" + submissionID + "', " +
                 "'" + submission.getSubmissionForm() + "', " +
                 "'" + LocalDate.now() + "', "
                 + submission.mapToSqlQuery() + ");";
@@ -46,6 +46,7 @@ public class SubmissionRepository {
             return jdbcTemplate.update(sql);
         }catch (DataIntegrityViolationException e)
         {
+            e.printStackTrace();
             throw new ApiRequestException("Formularul cu Id:" + submission.getSubmissionForm() + " nu exista");
         }
     }
@@ -71,10 +72,34 @@ public class SubmissionRepository {
         return submissions;
     }
 
+    public Submission getSubmissionById(UUID submissionId) {
+        String sql = "SELECT * FROM submissions WHERE \"SubmissionID\" = '" + submissionId + "';";
+        System.out.println(sql);
+        List<Submission> submissions= jdbcTemplate.query(sql, getUserRowMapper());
+        return submissions.get(0);
+    }
+
     public void insertSubmissionIntoForm(UUID submissionID, UUID formID)
     {
         String sqlUpdate = "" + "UPDATE Forms SET \"FormSubmissions\" = \"FormSubmissions\" || '{\"" + submissionID + "\"}' WHERE \"FormID\" = '" + formID + "';";
         //System.out.println(sqlUpdate);
         jdbcTemplate.update(sqlUpdate);
+    }
+
+    public void removeSubmissionFromForm(UUID submissionID, UUID formID)
+    {
+        String sqlUpdate = "" + "UPDATE Forms SET \"FormSubmissions\" = ARRAY_REMOVE(\"FormSubmissions\", '" + submissionID + "') WHERE \"FormID\" = '" + formID + "';";
+        //System.out.println(sqlUpdate);
+        jdbcTemplate.update(sqlUpdate);
+    }
+
+
+    public void deleteSubmission(UUID submissionID)
+    {
+        String sql = "" + "DELETE FROM SUBMISSIONS WHERE \"SubmissionID\" = '" + submissionID + "';";
+        System.out.println(sql);
+        Submission submission = getSubmissionById(submissionID);
+        removeSubmissionFromForm( submissionID, submission.getSubmissionForm());
+        jdbcTemplate.update(sql);
     }
 }
