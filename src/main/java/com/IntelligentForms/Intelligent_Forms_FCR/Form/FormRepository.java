@@ -1,5 +1,6 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
+import com.IntelligentForms.Intelligent_Forms_FCR.Submission.Submission;
 import com.IntelligentForms.Intelligent_Forms_FCR.User.UserRepository;
 import com.IntelligentForms.Intelligent_Forms_FCR.exception.ApiRequestException;
 import org.json.JSONObject;
@@ -79,6 +80,13 @@ public class FormRepository {
         return forms;
     }
 
+    private Form getFormById(UUID formID)
+    {
+        String sql = "SELECT * FROM forms WHERE \"FormID\" = '" + formID + "';";
+        List<Form> forms= jdbcTemplate.query(sql, getUserRowMapper());
+        return forms.get(0);
+    }
+
     public void insertFormIntoUser(UUID formID, UUID userID)
     {
         String sqlUpdate = "" + "UPDATE Users SET \"Forms\" = \"Forms\" || '{\"" + formID + "\"}' WHERE \"UserID\" = '" + userID + "';";
@@ -95,6 +103,19 @@ public class FormRepository {
         jdbcTemplate.update(sql);
     }
 
+    public void removeFormFromUser(UUID formID, UUID userID)
+    {
+        String sqlUpdate = "" + "UPDATE Users SET \"Forms\" = ARRAY_REMOVE(\"Forms\", '" + formID + "') WHERE \"UserID\" = '" + userID + "';";
+        //System.out.println(sqlUpdate);
+        jdbcTemplate.update(sqlUpdate);
+    }
 
+    public void deleteForm(UUID formID) {
+        Form form = getFormById(formID);
+        removeFormFromUser(formID , form.getFormOwner());
+        String sql = "" + "DELETE FROM SUBMISSIONS WHERE \"SubmissionForm\" = '" + formID + "';" +
+                "DELETE FROM FORMS WHERE \"FormID\" = '" + formID + "';";
+        jdbcTemplate.update(sql);
+    }
 }
 

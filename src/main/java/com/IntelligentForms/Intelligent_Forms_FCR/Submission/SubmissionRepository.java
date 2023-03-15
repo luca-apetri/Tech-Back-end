@@ -93,7 +93,6 @@ public class SubmissionRepository {
         jdbcTemplate.update(sqlUpdate);
     }
 
-
     public void deleteSubmission(UUID submissionID)
     {
         String sql = "" + "DELETE FROM SUBMISSIONS WHERE \"SubmissionID\" = '" + submissionID + "';";
@@ -102,4 +101,5 @@ public class SubmissionRepository {
         removeSubmissionFromForm( submissionID, submission.getSubmissionForm());
         jdbcTemplate.update(sql);
     }
+
 }

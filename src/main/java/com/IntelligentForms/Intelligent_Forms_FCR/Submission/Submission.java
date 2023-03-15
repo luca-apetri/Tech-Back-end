@@ -27,6 +27,10 @@ public class Submission {
         this.submissions = submissionMap;
     }
 
+    public Submission()
+    {
+    }
+
     public Map<String, ?> getSubmissions() {
         return submissions;
     }
