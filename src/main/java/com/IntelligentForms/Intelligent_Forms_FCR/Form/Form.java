@@ -15,12 +15,14 @@ public class Form {
     private UUID formOwner;
     private Map<String, ArrayList<?>> dynamicFields;
     private UUID[] formSubmissions;
+    private int dataRetentionPeriod;
 
     public Form(@JsonProperty("FormID") UUID formId,
                 @JsonProperty("FormName") String formName,
                 @JsonProperty("FormOwner") UUID formOwner,
                 @JsonProperty("DynamicFields") Map<String, ArrayList<?>> dynamicFields,
-                @JsonProperty("FormSubmissions") UUID[] formSubmissions) {
+                @JsonProperty("FormSubmissions") UUID[] formSubmissions,
+                @JsonProperty("DataRetentionPeriod") int dataRetentionPeriod) {
         //Map<String, ?> dynamicFieldMap = dynamicFields.to;
 
         this.formId = formId;
@@ -28,7 +30,7 @@ public class Form {
         this.formOwner = formOwner;
         this.dynamicFields = dynamicFields;
         this.formSubmissions = formSubmissions;
-
+        this.dataRetentionPeriod = dataRetentionPeriod;
     }
 
     public UUID getFormId() {
@@ -49,6 +51,10 @@ public class Form {
 
     public UUID[] getFormSubmissions() {
         return formSubmissions;
+    }
+
+    public int getDataRetentionPeriod() {
+        return dataRetentionPeriod;
     }
 
     @Override

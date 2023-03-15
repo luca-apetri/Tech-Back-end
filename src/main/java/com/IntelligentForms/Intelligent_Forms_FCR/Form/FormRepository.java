@@ -35,14 +35,16 @@ public class FormRepository {
                 "\"FormName\", " +
                 "\"FormOwner\", " +
                 "\"DynamicFields\", " +
-                "\"FormSubmissions\"" +
+                "\"FormSubmissions\", " +
+                "\"DataRetentionPeriod\"" +
                 ") " +
                 "VALUES(" +
                 "'" + formID + "', " +
                 "'" + form.getFormName() + "', " +
                 "'" + form.getFormOwner() + "', " +
                 "'" + form.formatDynamicFields() + "', " +
-                "'" + form.getSubmissionsString() + "'" +
+                "'" + form.getSubmissionsString() + "', " +
+                "'" + form.getDataRetentionPeriod() + "'" +
                 ");";
         System.out.println(sql);
         try {
@@ -61,13 +63,14 @@ public class FormRepository {
             String nume = resultSet.getString("formName");
             UUID formOwner = UUID.fromString(resultSet.getString("formOwner"));
             String submissionsString = resultSet.getString("formSubmissions");
+            int dataRetentionPeriod = resultSet.getInt("DataRetentionPeriod");
 
             //Conversie din String in Array de UUID
             UUID[] submissions = UserRepository.ArrayFromString(submissionsString);
             JSONObject dynamicFields = new JSONObject(resultSet.getString("dynamicFields"));
             Map<String, ?> dynamicFieldMap = dynamicFields.toMap();
             //System.out.println(dynamicFields.toString());
-            return new Form(formID, nume, formOwner, (Map<String, ArrayList<?>>) dynamicFieldMap, submissions);
+            return new Form(formID, nume, formOwner, (Map<String, ArrayList<?>>) dynamicFieldMap, submissions, dataRetentionPeriod);
         };
     }
     public List<Form> getFormsOfUser(UUID userID) {
