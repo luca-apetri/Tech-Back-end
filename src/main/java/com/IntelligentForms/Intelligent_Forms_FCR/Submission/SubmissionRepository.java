@@ -30,14 +30,14 @@ public class SubmissionRepository {
         return submissions;
     }
 
-    public int insertSubmission(Submission submission)
+    public int insertSubmission(Submission submission, UUID submissionID)
     {
         String sql = "INSERT INTO SUBMISSIONS (" +
                 "\"SubmissionID\", " +
                 "\"SubmissionForm\", " +
                 "\"SubmissionValues\") " +
                 "VALUES(" +
-                "uuid_generate_v4(), " +
+                "'" + submissionID +"', " +
                 "'" + submission.getSubmissionForm() + "', "
                 + submission.mapToSqlQuery() + ");";
 
@@ -68,5 +68,12 @@ public class SubmissionRepository {
         String sql = "SELECT * FROM submissions WHERE \"SubmissionForm\" = '" + formID.toString() + "';";
         List<Submission> submissions= jdbcTemplate.query(sql, getUserRowMapper());
         return submissions;
+    }
+
+    public void insertSubmissionIntoForm(UUID submissionID, UUID formID)
+    {
+        String sqlUpdate = "" + "UPDATE Forms SET \"FormSubmissions\" = \"FormSubmissions\" || '{\"" + submissionID + "\"}' WHERE \"FormID\" = '" + formID + "';";
+        //System.out.println(sqlUpdate);
+        jdbcTemplate.update(sqlUpdate);
     }
 }

@@ -6,20 +6,20 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Form {
     private UUID formId;
     private String formName;
     private UUID formOwner;
-    private Map<String, ArrayList<Sectiune>> dynamicFields;
-    private String formText;
+    private Map<String, ArrayList<?>> dynamicFields;
     private UUID[] formSubmissions;
 
     public Form(@JsonProperty("FormID") UUID formId,
                 @JsonProperty("FormName") String formName,
                 @JsonProperty("FormOwner") UUID formOwner,
-                @JsonProperty("DynamicFields") Map<String, ArrayList<Sectiune>> dynamicFields,
-                @JsonProperty("FormText") String formText,
+                @JsonProperty("DynamicFields") Map<String, ArrayList<?>> dynamicFields,
                 @JsonProperty("FormSubmissions") UUID[] formSubmissions) {
         //Map<String, ?> dynamicFieldMap = dynamicFields.to;
 
@@ -28,7 +28,6 @@ public class Form {
         this.formOwner = formOwner;
         this.dynamicFields = dynamicFields;
         this.formSubmissions = formSubmissions;
-        this.formText = formText;
 
     }
 
@@ -44,17 +43,12 @@ public class Form {
         return formOwner;
     }
 
-    public Map<String, ArrayList<Sectiune>> getDynamicFields() {
+    public Map<String, ArrayList<?>> getDynamicFields() {
         return dynamicFields;
     }
 
     public UUID[] getFormSubmissions() {
         return formSubmissions;
-    }
-
-
-    public String getFormText() {
-        return formText;
     }
 
     @Override
@@ -70,8 +64,13 @@ public class Form {
 
     public String formatDynamicFields()
     {
-        String returnString = dynamicFields.toString();
-        returnString = returnString.replace("=", "\":").replace("section","\"section");
+        String returnString = "";
+        try{
+            returnString = new ObjectMapper().writeValueAsString(dynamicFields);
+        }catch (JsonProcessingException e)
+        {
+            e.printStackTrace();
+        }
         return returnString;
     }
 

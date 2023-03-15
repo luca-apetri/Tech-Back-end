@@ -25,7 +25,12 @@ public class SubmissionService
 
     public void addNewSubmission(Submission submission)
     {
-        submissionRepository.insertSubmission(submission);
+        UUID submissionID = UUID.randomUUID();
+        int success = submissionRepository.insertSubmission(submission, submissionID);
+        if(success == 1)
+        {
+            submissionRepository.insertSubmissionIntoForm(submissionID, submission.getSubmissionForm());
+        }
     }
 
     public List<Submission> getSubmissionsOfForm(UUID formID) {

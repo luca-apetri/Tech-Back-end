@@ -18,7 +18,6 @@ public class UserRepository {
     }
 
     public List<User> SelectAllUsers(){
-       // String sql = "SELECT userid, Nume, Prenume, Forms, Adresa, CompanyName, FiscalCode, AccountType, Email, Parola FROM users";
         String sql = "SELECT * FROM users";
         List<User> users = jdbcTemplate.query(sql, getUserRowMapper());
         return users;
@@ -54,8 +53,6 @@ public class UserRepository {
         return jdbcTemplate.update(sql);
 
     }
-
-
 
     boolean isEmailTaken(String email)
     {

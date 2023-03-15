@@ -31,7 +31,10 @@ public class FormController {
     @PostMapping
     public void addNewForm(@RequestBody Form form)
     {
+        if(form.getFormId() == null)
             formService.addNewForm(form);
+        else
+            formService.updateForm(form);
     }
 
 }

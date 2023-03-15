@@ -36,4 +36,7 @@ public class FormService
     }
 
 
+    public void updateForm(Form form) {
+        formRepository.udpateForm(form);
+    }
 }

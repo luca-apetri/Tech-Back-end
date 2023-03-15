@@ -35,17 +35,16 @@ public class FormRepository {
                 "\"FormName\", " +
                 "\"FormOwner\", " +
                 "\"DynamicFields\", " +
-                "\"FormSubmissions\", " +
-                "\"FormText\") " +
+                "\"FormSubmissions\"" +
+                ") " +
                 "VALUES(" +
                 "'" + formID + "', " +
                 "'" + form.getFormName() + "', " +
                 "'" + form.getFormOwner() + "', " +
                 "'" + form.formatDynamicFields() + "', " +
-                "'" + form.getSubmissionsString() + "', " +
-                "'" + form.getFormText() + "'" +
+                "'" + form.getSubmissionsString() + "'" +
                 ");";
-
+        System.out.println(sql);
         try {
             return jdbcTemplate.update(sql);
         }catch (DataIntegrityViolationException e)
@@ -62,14 +61,13 @@ public class FormRepository {
             String nume = resultSet.getString("formName");
             UUID formOwner = UUID.fromString(resultSet.getString("formOwner"));
             String submissionsString = resultSet.getString("formSubmissions");
-            String formText = resultSet.getString("formText");
 
             //Conversie din String in Array de UUID
             UUID[] submissions = UserRepository.ArrayFromString(submissionsString);
             JSONObject dynamicFields = new JSONObject(resultSet.getString("dynamicFields"));
             Map<String, ?> dynamicFieldMap = dynamicFields.toMap();
             //System.out.println(dynamicFields.toString());
-            return new Form(formID, nume, formOwner, (Map<String, ArrayList<Sectiune>>) dynamicFieldMap, formText, submissions);
+            return new Form(formID, nume, formOwner, (Map<String, ArrayList<?>>) dynamicFieldMap, submissions);
         };
     }
     public List<Form> getFormsOfUser(UUID userID) {
@@ -81,9 +79,17 @@ public class FormRepository {
     public void insertFormIntoUser(UUID formID, UUID userID)
     {
         String sqlUpdate = "" + "UPDATE Users SET \"Forms\" = \"Forms\" || '{\"" + formID + "\"}' WHERE \"UserID\" = '" + userID + "';";
-       // update player_scores set round_scores = array_append(round_scores, 100);
-        System.out.println(sqlUpdate);
+        //System.out.println(sqlUpdate);
         jdbcTemplate.update(sqlUpdate);
+    }
+
+    public void udpateForm(Form form) {
+        String sql = "" +
+                "UPDATE Forms SET \"FormName\" = '" + form.getFormName() + "', " +
+                "\"DynamicFields\" = '" + form.formatDynamicFields() + "' " +
+                "WHERE \"FormID\" = '" + form.getFormId() + "';";
+
+        jdbcTemplate.update(sql);
     }
 }
 
