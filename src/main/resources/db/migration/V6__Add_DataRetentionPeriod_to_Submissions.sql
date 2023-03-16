@@ -1,0 +1,1 @@
+ALTER TABLE SUBMISSIONS ADD COLUMN "DataRetentionPeriod" int;

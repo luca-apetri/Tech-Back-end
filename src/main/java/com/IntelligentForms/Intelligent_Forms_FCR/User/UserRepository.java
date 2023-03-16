@@ -2,6 +2,7 @@ package com.IntelligentForms.Intelligent_Forms_FCR.User;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -49,9 +50,13 @@ public class UserRepository {
                 "');";
 
         //System.out.println(sql);
-
-        return jdbcTemplate.update(sql);
-
+        try {
+            return jdbcTemplate.update(sql);
+        }catch (DataIntegrityViolationException e)
+        {
+            System.err.println("Exception occurred: " + e.getMessage());
+        }
+        return 0;
     }
 
     boolean isEmailTaken(String email)
