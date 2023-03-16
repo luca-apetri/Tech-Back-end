@@ -28,11 +28,6 @@ public class FormController {
         return formService.getFormsOfUser(userID);
     }
 
-    @DeleteMapping(path = "{FormID}")
-    public void deleteForm(@PathVariable("FormID") UUID formID)
-    {
-        formService.deleteForm(formID);
-    }
     @PostMapping
     public void addNewForm(@RequestBody Form form)
     {

@@ -38,9 +38,4 @@ public class FormService
     public void updateForm(Form form) {
         formRepository.udpateForm(form);
     }
-
-    public void deleteForm(UUID formID)
-    {
-        formRepository.deleteForm(formID);
-    }
 }

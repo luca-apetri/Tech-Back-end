@@ -1,6 +1,7 @@
 package com.IntelligentForms.Intelligent_Forms_FCR.Form;
 
 import com.IntelligentForms.Intelligent_Forms_FCR.User.UserRepository;
+import com.IntelligentForms.Intelligent_Forms_FCR.exception.ApiRequestException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -23,7 +24,7 @@ public class FormRepository {
 
     public List<Form> SelectAllForms(){
         String sql = "SELECT * FROM forms";
-        List<Form> forms = jdbcTemplate.query(sql, getFormRowMapper());
+        List<Form> forms = jdbcTemplate.query(sql, getUserRowMapper());
         return forms;
     }
 
@@ -50,12 +51,13 @@ public class FormRepository {
             return jdbcTemplate.update(sql);
         }catch (DataIntegrityViolationException e)
         {
-            System.err.println("Exception occurred: " + e.getMessage());
+            e.printStackTrace();
+            throw new ApiRequestException("Utilizatorul cu Id:" + form.getFormOwner() + " nu exista");
         }
-    return 0;
+
     }
 
-    private static RowMapper<Form> getFormRowMapper() {
+    private static RowMapper<Form> getUserRowMapper() {
         return (resultSet, i) -> {
             UUID formID = UUID.fromString(resultSet.getString("formid"));
             String nume = resultSet.getString("formName");
@@ -73,15 +75,8 @@ public class FormRepository {
     }
     public List<Form> getFormsOfUser(UUID userID) {
         String sql = "SELECT * FROM forms WHERE \"FormOwner\" = '" + userID.toString() + "';";
-        List<Form> forms= jdbcTemplate.query(sql, getFormRowMapper());
+        List<Form> forms= jdbcTemplate.query(sql, getUserRowMapper());
         return forms;
-    }
-
-    private Form getFormById(UUID formID)
-    {
-        String sql = "SELECT * FROM forms WHERE \"FormID\" = '" + formID + "';";
-        List<Form> forms= jdbcTemplate.query(sql, getFormRowMapper());
-        return forms.get(0);
     }
 
     public void insertFormIntoUser(UUID formID, UUID userID)
@@ -100,19 +95,6 @@ public class FormRepository {
         jdbcTemplate.update(sql);
     }
 
-    public void removeFormFromUser(UUID formID, UUID userID)
-    {
-        String sqlUpdate = "" + "UPDATE Users SET \"Forms\" = ARRAY_REMOVE(\"Forms\", '" + formID + "') WHERE \"UserID\" = '" + userID + "';";
-        //System.out.println(sqlUpdate);
-        jdbcTemplate.update(sqlUpdate);
-    }
 
-    public void deleteForm(UUID formID) {
-        Form form = getFormById(formID);
-        removeFormFromUser(formID , form.getFormOwner());
-        String sql = "" + "DELETE FROM SUBMISSIONS WHERE \"SubmissionForm\" = '" + formID + "';" +
-                "DELETE FROM FORMS WHERE \"FormID\" = '" + formID + "';";
-        jdbcTemplate.update(sql);
-    }
 }
 
