@@ -3,6 +3,7 @@ package com.IntelligentForms.Intelligent_Forms_FCR.Submission;
 import com.IntelligentForms.Intelligent_Forms_FCR.Form.Form;
 import com.IntelligentForms.Intelligent_Forms_FCR.Form.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +36,12 @@ public class SubmissionService
 
     public List<Submission> getSubmissionsOfForm(UUID formID) {
         return submissionRepository.getSubmissionsOfForm(formID);
+    }
+
+    @Scheduled(cron = "0 0 0 * * ?")
+    public void deleteOldSubmissions()
+    {
+        submissionRepository.deleteOldSubmissions();
+        System.out.println("S-au sters submissions vechi");
     }
 }

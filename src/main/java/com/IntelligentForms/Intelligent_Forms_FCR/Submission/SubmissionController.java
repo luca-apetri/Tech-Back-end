@@ -3,6 +3,10 @@ package com.IntelligentForms.Intelligent_Forms_FCR.Submission;
 import com.fasterxml.jackson.databind.JsonSerializable;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 
@@ -29,6 +33,11 @@ public class SubmissionController {
     public List<Submission> getSubmissionsOfForm(@PathVariable("FormID") UUID formID)
     {
         return submissionService.getSubmissionsOfForm(formID);
+    }
+
+    public void deleteOldSubmissions()
+    {
+        submissionService.deleteOldSubmissions();
     }
 
     @PostMapping
