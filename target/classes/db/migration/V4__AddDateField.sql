@@ -1,1 +1,0 @@
-ALTER TABLE SUBMISSIONS ADD COLUMN "CreationDate" date;
