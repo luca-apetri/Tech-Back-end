@@ -5,9 +5,12 @@ import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.dto.CreateFormDto;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.dto.ReturnFormDto;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.utils.FormMapper;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Submission.SubmissionRepository;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.Submission.util.SubmissionMapper;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.User.User;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.User.UserRepository;
-import com.Intelligent_Forms.Intelligent_Forms_FCR.field.Field;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.field.DynamicFields;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.field.FieldRepository;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.field.utils.FieldMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,35 +22,48 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FormService {
     private final FormRepository formRepository;
-    private final UserRepository userRepository;
     private final SubmissionRepository submissionRepository;
+    private final UserRepository userRepository;
     private final FieldRepository fieldRepository;
 
-    public List<ReturnFormDto> getAllForms() {
-        List<ReturnFormDto> forms = FormMapper.formListToReturnFormDtoList(formRepository.findAll());
-        for (ReturnFormDto form : forms
-        ) {
-            form.setDynamicFields(fieldRepository.findAllByForm_Id(form.getId()));
-            //TODO MAKE DTO FOR DYNAMIC FIELDS
 
+    public List<ReturnFormDto> getAllForms(UUID userId) throws Exception {
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            List<ReturnFormDto> forms = FormMapper.formListToReturnFormDtoList(formRepository.findAllByUser_Id(userId));
+            for (ReturnFormDto form : forms
+            ) {
+                form.setDynamicFields(FieldMapper.fieldListToFieldDtoList(fieldRepository.findAllByForm_Id(form.getId())));
+                form.setFormSubmissions(SubmissionMapper.submissionListToSubmissionDtoList(submissionRepository.
+                        findAllByForm_Id(form.getId())));
+
+            }
+            return forms;
         }
-        return forms;
+        else{
+            throw new Exception("Invalid user id!");
+        }
     }
 
-    public void addNewForm(CreateFormDto createFormDto) {
+    public void addNewForm(CreateFormDto createFormDto, UUID userId) throws Exception {
         Form form = FormMapper.createFormDtoToForm(createFormDto);
-        form = formRepository.save(form);
+        User user = userRepository.findById(userId).orElse(null);
+        if (user != null) {
+            form.setUser(user);
 
-        List<Field> fields = new ArrayList<>();
-        for (CreateFieldDto fieldDto : createFormDto.getDynamicFields()
-        ) {
-            Field fieldToSave = new Field();
-            fieldToSave.setName(fieldDto.getName());
-            fieldToSave.setContent(fieldDto.getContent());
-            fields.add(fieldRepository.save(fieldToSave));
+            List<DynamicFields> dynamicFields = new ArrayList<>();
+            for (CreateFieldDto fieldDto : createFormDto.getDynamicFields()
+            ) {
+                DynamicFields dynamicFieldsToSave = new DynamicFields();
+                dynamicFieldsToSave.setName(fieldDto.getName());
+                dynamicFieldsToSave.setContent(fieldDto.getContent());
+                dynamicFields.add(fieldRepository.save(dynamicFieldsToSave));
+            }
+            form.setDynamicFields(dynamicFields);
+            formRepository.save(form);
+        } else {
+            throw new Exception("User not found!");
         }
-        form.setDynamicFields(fields);
-        formRepository.save(form);
     }
 
 

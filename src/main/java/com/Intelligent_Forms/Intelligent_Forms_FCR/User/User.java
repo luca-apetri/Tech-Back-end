@@ -2,7 +2,6 @@ package com.Intelligent_Forms.Intelligent_Forms_FCR.User;
 
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.Form;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.User.utils.AccountType;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,8 +37,8 @@ public class User {
     private String email;
     @NotBlank
     private String password;
-    @OneToMany(cascade = CascadeType.ALL,
-            orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private List<Form> forms;
 
 }

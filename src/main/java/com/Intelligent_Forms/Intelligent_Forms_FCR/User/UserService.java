@@ -41,9 +41,10 @@ public class UserService {
     }
 
     public String login(String email, String password) throws Exception {
+
         User user = userRepository.findByEmailAndPassword(email, password)
                 .orElse(null);
-        if (user != null) {
+        if (user == null) {
             throw new Exception();
         }
         return "Logged in";

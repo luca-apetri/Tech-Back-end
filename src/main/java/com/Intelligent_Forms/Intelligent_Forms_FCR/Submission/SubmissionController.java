@@ -1,38 +1,39 @@
 package com.Intelligent_Forms.Intelligent_Forms_FCR.Submission;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.Submission.dto.CreateSubmissionDto;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.Submission.dto.SubmissionDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("submissions")
+@RequestMapping("/submissions")
+@RequiredArgsConstructor
+@Validated
 public class SubmissionController {
-    SubmissionService submissionService;
+    private final SubmissionService submissionService;
 
-    @Autowired
-    public SubmissionController(SubmissionService submissionService) {
-        this.submissionService = submissionService;
+    @GetMapping(path = "/{userId}/{formId}")
+    public List<SubmissionDto> getSubmissionsOfForm(@PathVariable UUID formId,
+                                                    @PathVariable UUID userId) throws Exception {
+        return submissionService.getSubmissionsOfForm(formId, userId);
     }
 
-    @GetMapping
-    public List<Submission> getAllSubmissions() {
-        return submissionService.getAllSubmissions();
+    @DeleteMapping(path = "/{userId}/{formId}/{submissionID}")
+    public void deleteSubmission(@PathVariable UUID submissionID,
+                                 @PathVariable UUID userId,
+                                 @PathVariable UUID formId) throws Exception {
+        submissionService.deleteSubmission(submissionID, userId, formId);
     }
 
-    @GetMapping(path = "{FormID}")
-    public List<Submission> getSubmissionsOfForm(@PathVariable("FormID") UUID formID) throws Exception {
-        return submissionService.getSubmissionsOfForm(formID);
-    }
-
-    @DeleteMapping(path = "{SubmissionID}")
-    public void deleteSubmission(@PathVariable("SubmissionID") UUID submissionID) {
-        submissionService.deleteSubmission(submissionID);
-    }
-
-    @PostMapping
-    public void addNewSubmission(@RequestBody Submission submission) {
-        submissionService.addNewSubmission(submission);
+    @PostMapping("/{userId}/{formId}")
+    public void addNewSubmission(@PathVariable UUID formId,
+                                 @PathVariable UUID userId,
+                                 @RequestBody @Valid CreateSubmissionDto createSubmissionDto) throws Exception {
+        submissionService.addNewSubmission(userId, formId, createSubmissionDto);
     }
 }

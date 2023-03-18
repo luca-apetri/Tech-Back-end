@@ -2,6 +2,7 @@ package com.Intelligent_Forms.Intelligent_Forms_FCR.User;
 
 import com.Intelligent_Forms.Intelligent_Forms_FCR.User.dto.CreateUserDto;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.User.dto.UserDto;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.User.dto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +34,10 @@ public class UserController {
         return "register_success";
     }
 
-    @PostMapping(path = "/login")
-    public String login(HttpServletRequest request) throws Exception {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+    @PostMapping( "/login")
+    public String login(@RequestBody UserLoginDto userLoginDto) throws Exception {
+        String email = userLoginDto.getEmail();
+        String password = userLoginDto.getPassword();
         return userService.login(email, password);
     }
 }

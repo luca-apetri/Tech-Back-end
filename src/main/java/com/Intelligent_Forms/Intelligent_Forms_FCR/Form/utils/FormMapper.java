@@ -3,7 +3,8 @@ package com.Intelligent_Forms.Intelligent_Forms_FCR.Form.utils;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.Form;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.dto.CreateFormDto;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.dto.ReturnFormDto;
-import com.Intelligent_Forms.Intelligent_Forms_FCR.User.utils.UserMapper;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.Submission.util.SubmissionMapper;
+import com.Intelligent_Forms.Intelligent_Forms_FCR.field.utils.FieldMapper;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -31,8 +32,8 @@ public class FormMapper {
                                     form.getId(),
                                     form.getFormName(),
                                     form.getDataRetentionPeriod(),
-                                    form.getDynamicFields(),
-                                    form.getFormSubmissions()));
+                                    FieldMapper.fieldListToFieldDtoList(form.getDynamicFields()),
+                                    SubmissionMapper.submissionListToSubmissionDtoList(form.getFormSubmissions())));
         }
         return formDtos;
     }

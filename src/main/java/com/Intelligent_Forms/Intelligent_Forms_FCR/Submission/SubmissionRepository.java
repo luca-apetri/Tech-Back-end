@@ -8,6 +8,6 @@ import java.util.UUID;
 
 @Repository
 public interface SubmissionRepository extends JpaRepository<Submission, UUID> {
-//    List<Submission> findAllByForm_Id(UUID id);
+   List<Submission> findAllByForm_Id(UUID id);
 
 }

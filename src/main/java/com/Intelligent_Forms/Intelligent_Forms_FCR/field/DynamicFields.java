@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "fields")
-public class Field {
+public class DynamicFields {
     @Id
     @GeneratedValue
     public UUID id;
@@ -23,6 +23,6 @@ public class Field {
     @NotBlank
     public String content;
     @ManyToOne
+    @JoinColumn(name = "form_id",referencedColumnName = "id")
     public Form form;
-
 }

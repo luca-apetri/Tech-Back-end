@@ -13,9 +13,9 @@ import java.util.UUID;
 @RequestMapping("forms")
 public class FormController {
     private final FormService formService;
-    @GetMapping
-    public List<ReturnFormDto> getAllForms(){
-        return formService.getAllForms();
+    @GetMapping("/{userId}")
+    public List<ReturnFormDto> getAllForms(@PathVariable UUID userId) throws Exception {
+        return formService.getAllForms(userId);
     }
 
     @DeleteMapping(path = "{FormID}")
@@ -25,9 +25,8 @@ public class FormController {
     }
 
     @PostMapping
-    public void addNewForm(@RequestBody CreateFormDto form)
-    {
-        formService.addNewForm(form);
+    public void addNewForm(@RequestBody CreateFormDto form,@RequestParam UUID userId) throws Exception {
+        formService.addNewForm(form,userId);
     }
 
 }
