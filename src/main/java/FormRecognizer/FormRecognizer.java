@@ -1,16 +1,14 @@
 package FormRecognizer;
-import com.azure.ai.formrecognizer.FormRecognizerClient;
-import com.azure.ai.formrecognizer.FormRecognizerClientBuilder;
+
 import com.azure.ai.formrecognizer.documentanalysis.DocumentAnalysisClient;
 import com.azure.ai.formrecognizer.documentanalysis.DocumentAnalysisClientBuilder;
 import com.azure.ai.formrecognizer.documentanalysis.models.*;
-import com.azure.ai.formrecognizer.models.*;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
 
-import java.io.*;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 public class FormRecognizer {
     private final static String ENDPOINT = "https://form-recognizer-techchallenge.cognitiveservices.azure.com/";
@@ -89,8 +87,6 @@ public class FormRecognizer {
                     }
                 }
             }
-
-
 
 
         } catch (Exception e) {
