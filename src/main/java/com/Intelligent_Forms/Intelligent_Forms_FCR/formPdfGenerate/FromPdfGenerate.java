@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -39,6 +38,7 @@ public class FromPdfGenerate {
         document.add(new Paragraph());
         document.add(new Paragraph(" e-mail " + user.getEmail()));
         document.add(new Paragraph(" solicit: "));
+
 
         document.close();
         return new FileSystemResource("F:\\New folder\\Tech-Back-end\\form.pdf");

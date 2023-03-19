@@ -5,7 +5,7 @@ For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.10-SNAPSHOT/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.10-SNAPSHOT/maven-plugin/reference/html/#build-image)
+* [Create an OCI ImageTextReader](https://docs.spring.io/spring-boot/docs/2.7.10-SNAPSHOT/maven-plugin/reference/html/#build-ImageTextReader)
 * [Spring Web](https://docs.spring.io/spring-boot/docs/2.7.10-SNAPSHOT/reference/htmlsingle/#web)
 * [Flyway Migration](https://docs.spring.io/spring-boot/docs/2.7.10-SNAPSHOT/reference/htmlsingle/#howto.data-initialization.migration-tool.flyway)
 * [Spring Data JPA](https://docs.spring.io/spring-boot/docs/2.7.10-SNAPSHOT/reference/htmlsingle/#data.sql.jpa-and-spring-data)

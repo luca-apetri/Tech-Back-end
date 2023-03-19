@@ -19,6 +19,7 @@ public class CreateSubmissionDto {
     @NotBlank
     @Size(min = 2, max = 2)
     public String series;
+
     @NotBlank
     @Size(min = 6, max = 6)
     public String number;
