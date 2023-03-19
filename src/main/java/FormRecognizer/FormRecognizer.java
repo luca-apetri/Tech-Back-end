@@ -1,5 +1,4 @@
 package FormRecognizer;
-
 import com.azure.ai.formrecognizer.documentanalysis.DocumentAnalysisClient;
 import com.azure.ai.formrecognizer.documentanalysis.DocumentAnalysisClientBuilder;
 import com.azure.ai.formrecognizer.documentanalysis.models.*;
