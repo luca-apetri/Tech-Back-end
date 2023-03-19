@@ -29,7 +29,12 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.4</version>
+            <version>1.6.15</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.5.1</version>
         </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>
