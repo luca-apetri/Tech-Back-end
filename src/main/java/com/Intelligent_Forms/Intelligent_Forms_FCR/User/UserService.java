@@ -1,6 +1,5 @@
 package com.Intelligent_Forms.Intelligent_Forms_FCR.User;
 
-import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.Form;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.Form.FormRepository;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.User.dto.CreateUserDto;
 import com.Intelligent_Forms.Intelligent_Forms_FCR.User.dto.UserDto;
@@ -29,18 +28,10 @@ public class UserService {
         return UserMapper.userToUserDto(userRepository.findAll());
     }
 
-    public List<Form> getFormsOfUser(UUID userID) throws Exception {
-        User user = userRepository.findById(userID).orElse(null);
-        if (user == null) {
-            throw new Exception();
-        }
-        return user.getForms();
-    }
-
-
     public void addNewUser(CreateUserDto user) {
-        if (userRepository.existsByEmail(user.getEmail()))
+        if (userRepository.existsByEmail(user.getEmail())) {
             throw new ApiRequestException(user.getEmail() + " is not valid");
+        }
         userRepository.save(UserMapper.createUserDtoToUser(user));
     }
 
