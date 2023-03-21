@@ -1,0 +1,10 @@
+
+e
+java:S1192 "JDefine a constant instead of duplicating this literal "image/png" 3 times.(’‚ì÷ıÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Âä¨ÿÿÿÿÿ
+<
+java:S1452"&Remove usage of generic wildcard type.(áëä¸
+A
+java:S1452%"&Remove usage of generic wildcard type.(—ªŠÿúÿÿÿÿ
+A
+java:S1452."&Remove usage of generic wildcard type.(¦ã«Òüÿÿÿÿ

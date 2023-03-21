@@ -1,0 +1,10 @@
+
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ØÄºß
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Âä¨ÿÿÿÿÿ
+d
+java:S2095;"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(Âî¢·
+p
+java:S3655+"NCall "dbImage.isPresent()" or "!dbImage.isEmpty()" before accessing the value.(®Ü ³ûÿÿÿÿ8¸ôœğ0
+p
+java:S36555"NCall "dbImage.isPresent()" or "!dbImage.isEmpty()" before accessing the value.(é Ùìúÿÿÿÿ8¸ôœğ0
+\	java:S899:"BDo something with the "boolean" value returned by "createNewFile".(¬³ñÿûÿÿÿÿ
