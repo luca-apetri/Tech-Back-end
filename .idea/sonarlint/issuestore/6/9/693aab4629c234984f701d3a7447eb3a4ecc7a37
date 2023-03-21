@@ -1,0 +1,31 @@
+
+>
+java:S1604t"(Make this anonymous inner class a lambda(˜Öó‡
+C
+java:S1604|"(Make this anonymous inner class a lambda(×›üöÿÿÿÿÿ
+x
+java:S2629Ÿ"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(¥È´ùÿÿÿÿ
+U
+java:S1118+":Add a private constructor to hide the implicit public one.(ÄŒõ—ùÿÿÿÿ
+U	java:S899F";Do something with the "boolean" value returned by "delete".(¼·áüÿÿÿÿ
+i
+java:S4042F"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¼·áüÿÿÿÿ
+U	java:S899I";Do something with the "boolean" value returned by "delete".(£ï¦¢øÿÿÿÿ
+i
+java:S4042I"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(£ï¦¢øÿÿÿÿ
+W
+java:S3457e"AFormat specifiers should be used instead of string concatenation.(òÊˆˆ
+P	java:S899h";Do something with the "boolean" value returned by "delete".(Ñ©ÃÁ
+d
+java:S4042h"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(Ñ©ÃÁ
+>	java:S108n")Either remove or fill this block of code.(”ı¾
+]
+java:S3457Ÿ"AFormat specifiers should be used instead of string concatenation.(¥È´ùÿÿÿÿ
+X
+java:S3457¢"AFormat specifiers should be used instead of string concatenation.(¾àÀ³
+?	java:S108§")Either remove or fill this block of code.(”ı¾
+X
+java:S3457¹"AFormat specifiers should be used instead of string concatenation.(„Êêö
+?	java:S108¿")Either remove or fill this block of code.(”ı¾
+X
+java:S3457Ô"AFormat specifiers should be used instead of string concatenation.(„Êêö

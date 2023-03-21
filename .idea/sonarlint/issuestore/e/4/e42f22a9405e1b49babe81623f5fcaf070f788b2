@@ -1,0 +1,28 @@
+
+a	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(ì•¾Íıÿÿÿÿ
+t
+java:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(ë¯Šôıÿÿÿÿ
+p
+java:S2293Õ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼çÀ
+p
+java:S2293€"YReplace the type specification in this constructor call with the diamond operator ("<>").(µüÍ
+^
+java:S6355q"HAdd 'since' and/or 'forRemoval' arguments to the @Deprecated annotation.(õˆúš
+K
+java:S1133r"5Do not forget to remove this deprecated code someday.(¡ åĞ
+o
+java:S2139á"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+o
+java:S2139"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+o
+java:S2139ï"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+ƒ
+java:S1130˜"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(—™™¨
+i
+java:S3776Í"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(çÓÕğ
+t	java:S131Ñ"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ô§ßÉıÿÿÿÿ
+Q	java:S899®";Do something with the "boolean" value returned by "delete".(¥Ñìá
+e
+java:S4042®"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¥Ñìá
+o
+java:S2139ë"XEither log this exception and handle it, or rethrow it with some contextual information.(Æâ­ê

@@ -1,0 +1,13 @@
+
+F
+java:S1066“"/Merge this if statement with the enclosing one.(ÉØî
+U
+java:S1118/":Add a private constructor to hide the implicit public one.(½ÉÅìşÿÿÿÿ
+E
+java:S1905Q"*Remove this unnecessary cast to "TessAPI".(çÖç§øÿÿÿÿ
+N
+java:S1874Q"3Remove this use of "loadLibrary"; it is deprecated.(çÖç§øÿÿÿÿ
+g
+java:S3776}"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(¿—Ÿ^
+q
+java:S6201‡"ZReplace this instanceof check and cast with 'instanceof JarURLConnection jarurlconnection'(ª¥Ö

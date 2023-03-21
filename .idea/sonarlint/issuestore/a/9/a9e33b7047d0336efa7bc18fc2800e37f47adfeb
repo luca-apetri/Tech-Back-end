@@ -1,0 +1,107 @@
+
+g	java:S117Ö"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı¨¢Â
+h
+java:S1104Ù"QMake count a static final constant or non-public and provide accessors if needed.(Æ¸İ¾
+k
+java:S1104İ"TMake progress a static final constant or non-public and provide accessors if needed.(í¬†Õ
+t
+java:S1104á"XMake more_to_come a static final constant or non-public and provide accessors if needed.(ËìÙÆıÿÿÿÿ
+q
+java:S1104å"UMake ocr_alive a static final constant or non-public and provide accessors if needed.(èç¡üÿÿÿÿ
+k
+java:S1104é"TMake err_code a static final constant or non-public and provide accessors if needed.(åËñï
+i
+java:S1104í"RMake cancel a static final constant or non-public and provide accessors if needed.(ƒÀ´
+s
+java:S1104ñ"WMake cancel_this a static final constant or non-public and provide accessors if needed.(›Ô±»şÿÿÿÿ
+p
+java:S1104õ"TMake end_time a static final constant or non-public and provide accessors if needed.(›ŒÂëøÿÿÿÿ
+l
+java:S1104ù"PMake text a static final constant or non-public and provide accessors if needed.(ËÎ‰Æûÿÿÿÿ
+l
+java:S1104š"UMake char_code a static final constant or non-public and provide accessors if needed.(ëÂ¡á
+l
+java:S1104"PMake left a static final constant or non-public and provide accessors if needed.(¯õ†úÿÿÿÿ
+h
+java:S1104¢"QMake right a static final constant or non-public and provide accessors if needed.(ª´Êí
+k
+java:S1104¦"OMake top a static final constant or non-public and provide accessors if needed.(®şãÿÿÿÿÿ
+i
+java:S1104ª"RMake bottom a static final constant or non-public and provide accessors if needed.(Å®¨«
+r
+java:S1104®"VMake font_index a static final constant or non-public and provide accessors if needed.(€ÛÓíşÿÿÿÿ
+l
+java:S1104²"VMake confidence a static final constant or non-public and provide accessors if needed.(šÒ
+r
+java:S1104¶"VMake point_size a static final constant or non-public and provide accessors if needed.(‚‰‡£şÿÿÿÿ
+i
+java:S1104º"RMake blanks a static final constant or non-public and provide accessors if needed.(”Áó“
+r
+java:S1104¾"VMake formatting a static final constant or non-public and provide accessors if needed.(³•×ùøÿÿÿÿ
+i
+java:S1104Ş"RMake tv_sec a static final constant or non-public and provide accessors if needed.(¿Ü¯©
+o
+java:S1104â"SMake tv_usec a static final constant or non-public and provide accessors if needed.(æ´İ±şÿÿÿÿ
+c	java:S101Ô"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¡ˆŒÜ
+h	java:S101“"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(«Øéúÿÿÿÿ
+l	java:S114Î"QRename this interface name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¤„óöıÿÿÿÿ
+Y
+java:S1214*"CMove constants defined in this interfaces to another class or enum.(½¹ÕÜ
+7
+java:S1116@"Remove this empty statement.(ôŸìúÿÿÿÿ
+^
+java:S1214G"CMove constants defined in this interfaces to another class or enum.(ğñ‡Õøÿÿÿÿ
+8
+java:S1116‚"Remove this empty statement.(ôŸìúÿÿÿÿ
+_
+java:S1214‰"CMove constants defined in this interfaces to another class or enum.(¦éß‰ûÿÿÿÿ
+8
+java:S1116Ÿ"Remove this empty statement.(ôŸìúÿÿÿÿ
+_
+java:S1214§"CMove constants defined in this interfaces to another class or enum.(“°áëùÿÿÿÿ
+8
+java:S1116é"Remove this empty statement.(ôŸìúÿÿÿÿ
+_
+java:S1214ô"CMove constants defined in this interfaces to another class or enum.(¹ôúšùÿÿÿÿ
+Z
+java:S1214¯"CMove constants defined in this interfaces to another class or enum.(ï»§
+8
+java:S1116µ"Remove this empty statement.(ôŸìúÿÿÿÿ
+Z
+java:S1214¿"CMove constants defined in this interfaces to another class or enum.(ş ¿‡
+8
+java:S1116Ä"Remove this empty statement.(ôŸìúÿÿÿÿ
+_
+java:S1214Ñ"CMove constants defined in this interfaces to another class or enum.(Óö‚øÿÿÿÿ
+8
+java:S1116Ö"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116ë"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116…"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116“"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116£"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116®"Remove this empty statement.(ôŸìúÿÿÿÿ
+8
+java:S1116Æ"Remove this empty statement.(ôŸìúÿÿÿÿ
+r	java:S116á"WRename this field "more_to_come" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËìÙÆıÿÿÿÿ
+o	java:S116å"TRename this field "ocr_alive" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èç¡üÿÿÿÿ
+i	java:S116é"SRename this field "err_code" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åËñï
+q	java:S116ñ"VRename this field "cancel_this" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Ô±»şÿÿÿÿ
+n	java:S116õ"SRename this field "end_time" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ŒÂëøÿÿÿÿ
+B
+java:S2160Ô"+Override the "equals" method in this class.(¡ˆŒÜ
+j	java:S116š"TRename this field "char_code" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëÂ¡á
+p	java:S116®"URename this field "font_index" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€ÛÓíşÿÿÿÿ
+p	java:S116¶"URename this field "point_size" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚‰‡£şÿÿÿÿ
+G
+java:S2160“"+Override the "equals" method in this class.(«Øéúÿÿÿÿ
+8
+java:S1116×"Remove this empty statement.(ôŸìúÿÿÿÿ
+g	java:S116Ş"QRename this field "tv_sec" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿Ü¯©
+m	java:S116â"RRename this field "tv_usec" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ´İ±şÿÿÿÿ
+B
+java:S2160Ù"+Override the "equals" method in this class.(¯Ö°Æ

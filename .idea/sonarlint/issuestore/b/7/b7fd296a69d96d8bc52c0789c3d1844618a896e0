@@ -1,0 +1,23 @@
+
+`	java:S1129"FDefine and throw a dedicated exception instead of using a generic one.(µã¦Âüÿÿÿÿ
+h
+java:S1192;"MDefine a constant instead of duplicating this literal "eurotext.pdf" 3 times.(çŠš€øÿÿÿÿ
+h
+java:S1192["RDefine a constant instead of duplicating this literal "multipage-pdf.pdf" 3 times.(„©Öè
+}	java:S116 "cRename this field "TEST_RESOURCES_DATA_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô´ÿÑÿÿÿÿÿ
+<
+java:S1170 "!Make this final field static too.(Ô´ÿÑÿÿÿÿÿ
+œ
+java:S1186#"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(´ñ’ßþÿÿÿÿ
+œ
+java:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ú¬ÞÚþÿÿÿÿ
+œ
+java:S11860"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(êÉø„øÿÿÿÿ
+P	java:S899P";Do something with the "boolean" value returned by "delete".(Â¥éì
+d
+java:S4042P"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(Â¥éì
+P	java:S899R";Do something with the "boolean" value returned by "delete".(‘®ï³
+d
+java:S4042R"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(‘®ï³
+A
+java:S5960>"+Remove this assertion from production code.(áØèÎ

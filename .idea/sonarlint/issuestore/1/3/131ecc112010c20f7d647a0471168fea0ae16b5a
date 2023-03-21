@@ -1,0 +1,31 @@
+
+a	java:S112ò"FDefine and throw a dedicated exception instead of using a generic one.(ì•¾Íıÿÿÿÿ
+t
+java:S2293?"YReplace the type specification in this constructor call with the diamond operator ("<>").(ë¯Šôıÿÿÿÿ
+p
+java:S2293³"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼çÀ
+p
+java:S2293İ"YReplace the type specification in this constructor call with the diamond operator ("<>").(µüÍ
+o
+java:S2139Á"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+o
+java:S2139á"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+o
+java:S2139Î"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+ƒ
+java:S1130ö"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(—™™¨
+i
+java:S3776«"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(çÓÕğ
+t	java:S131¯"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ô§ßÉıÿÿÿÿ
+Q	java:S899Œ";Do something with the "boolean" value returned by "delete".(¥Ñìá
+e
+java:S4042Œ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¥Ñìá
+Q
+java:S1854":Remove this useless assignment to local variable "result".(ºÁÕ˜
+Ÿ
+java:S1130œ"‚Remove the declaration of thrown exception 'net.sourceforge.tess4j.TesseractException', as it cannot be thrown from method's body.(øÛìÿÿÿÿÿ
+B
+java:S1481"+Remove this unused "result" local variable.(ºÁÕ˜
+W	java:S125 "<This block of commented-out lines of code should be removed.(Ùş µøÿÿÿÿ
+o
+java:S2139È"XEither log this exception and handle it, or rethrow it with some contextual information.(Æâ­ê

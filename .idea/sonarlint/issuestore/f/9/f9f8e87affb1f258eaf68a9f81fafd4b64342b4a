@@ -1,0 +1,11 @@
+
+P
+java:S1118":Add a private constructor to hide the implicit public one.(¢êº÷
+P
+java:S1133R"5Do not forget to remove this deprecated code someday.(ÕüÔùÿÿÿÿ
+B
+java:S1123R"'Add the missing @Deprecated annotation.(ÕüÔùÿÿÿÿ
+K
+java:S1133z"5Do not forget to remove this deprecated code someday.(–›çÚ
+=
+java:S1123z"'Add the missing @Deprecated annotation.(–›çÚ

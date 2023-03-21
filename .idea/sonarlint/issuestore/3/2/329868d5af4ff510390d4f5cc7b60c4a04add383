@@ -1,0 +1,51 @@
+
+[	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(ú¯‘
+`	java:S112d"FDefine and throw a dedicated exception instead of using a generic one.(Ğ¸ª·ûÿÿÿÿ
+a	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(Ğ¸ª·ûÿÿÿÿ
+a	java:S112‚"FDefine and throw a dedicated exception instead of using a generic one.(Ğ¸ª·ûÿÿÿÿ
+\	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(ú¯‘
+\	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(ú¯‘
+a	java:S112À"FDefine and throw a dedicated exception instead of using a generic one.(Ğ¸ª·ûÿÿÿÿ
+a	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(Ğ¸ª·ûÿÿÿÿ
+o
+java:S2293G"YReplace the type specification in this constructor call with the diamond operator ("<>").(’ ³¬
+p
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(’ ³¬
+u
+java:S2293º"YReplace the type specification in this constructor call with the diamond operator ("<>").(¢³Ôîşÿÿÿÿ
+u
+java:S2293ô"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŞõÃ£ûÿÿÿÿ
+u
+java:S2293ª"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŞõÃ£ûÿÿÿÿ
+p
+java:S2293ö"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê”¤¨
+u
+java:S2293æ"YReplace the type specification in this constructor call with the diamond operator ("<>").(Äè¥şÿÿÿÿ
+i
+java:S1192Ù"RDefine a constant instead of duplicating this literal "javax_imageio_1.0" 3 times.(îØ»
+P
+java:S1118#":Add a private constructor to hide the implicit public one.(³Üù
+`
+java:S1124%"EReorder the modifiers to comply with the Java Language Specification.(öŒìµüÿÿÿÿ
+`
+java:S1124&"EReorder the modifiers to comply with the Java Language Specification.(áÎäºúÿÿÿÿ
+`
+java:S1124'"EReorder the modifiers to comply with the Java Language Specification.(Ê¡ßŸøÿÿÿÿ
+`
+java:S1124("EReorder the modifiers to comply with the Java Language Specification.(Óı’¹øÿÿÿÿ
+`
+java:S1124)"EReorder the modifiers to comply with the Java Language Specification.(İÓ÷Åúÿÿÿÿ
+P	java:S125W"<This block of commented-out lines of code should be removed.(ò­ç]
+Q	java:S125q"<This block of commented-out lines of code should be removed.(æš¶¥
+W	java:S125"<This block of commented-out lines of code should be removed.(úÚ¡“ÿÿÿÿÿ
+W	java:S125¥"<This block of commented-out lines of code should be removed.(óÖŒûÿÿÿÿ
+R	java:S125Š"<This block of commented-out lines of code should be removed.(¶ª†Ï
+Q	java:S899œ";Do something with the "boolean" value returned by "delete".(¥Ñìá
+e
+java:S4042œ"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(¥Ñìá
+ƒ
+java:S1130©"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(—¨Å»
+B
+java:S1905ï"&Remove this unnecessary cast to "int".(»àçˆúÿÿÿÿ
+B
+java:S1905ù"&Remove this unnecessary cast to "int".(–¤²ğıÿÿÿÿ

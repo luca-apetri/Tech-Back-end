@@ -1,0 +1,93 @@
+
+[	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(€“°Â
+`	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(’ïô¼ÿÿÿÿÿ
+[	java:S112c"FDefine and throw a dedicated exception instead of using a generic one.(ĞÙèÿ
+`	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(©û´·ûÿÿÿÿ
+a	java:S112•"FDefine and throw a dedicated exception instead of using a generic one.(÷Ø¢áÿÿÿÿÿ
+\	java:S112°"FDefine and throw a dedicated exception instead of using a generic one.(ğÒî×
+\	java:S112õ"FDefine and throw a dedicated exception instead of using a generic one.(éòœ˜
+\	java:S112Ï"FDefine and throw a dedicated exception instead of using a generic one.(É¦Ù€
+a	java:S112ç"FDefine and throw a dedicated exception instead of using a generic one.(²…›˜ÿÿÿÿÿ
+\	java:S112Š"FDefine and throw a dedicated exception instead of using a generic one.(ŠœÈ²
+\	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(›„§ô
+c
+java:S1192f"MDefine a constant instead of duplicating this literal "eurotext.tif" 8 times.(¤âÕ¹
+i
+java:S1192²"MDefine a constant instead of duplicating this literal "eurotext.png" 3 times.(€±»“üÿÿÿÿ
+f	java:S117€"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èÉò)
+g	java:S117‘"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û©ØË
+g	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÜòŠá
+l	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê­ó¶üÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸ ˜ïüÿÿÿÿ
+l	java:S117Ú"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”õ¤ûÿÿÿÿ
+l	java:S117“"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñÿ–˜ûÿÿÿÿ
+l	java:S117”"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒŸ¶ûÿÿÿÿ
+g	java:S117•"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ĞÿÏ›
+g	java:S117–"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸±â™
+l	java:S117š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬–¦‹ıÿÿÿÿ
+l	java:S117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÁŸûÂÿÿÿÿÿ
+g	java:S117œ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èª»
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¹ì½ÿÿÿÿÿ
+l	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êò¾ÿûÿÿÿÿ
+l	java:S117Ø"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—°Ìùÿÿÿÿ
+g	java:S117Û"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Û©ØË
+g	java:S117ß"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÜòŠá
+l	java:S117á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê­ó¶üÿÿÿÿ
+l	java:S117ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§¬Š÷ùÿÿÿÿ
+;
+java:S2629ş"$Invoke method(s) only conditionally.(¤›ÚÍ
+;
+java:S2629"$Invoke method(s) only conditionally.(¤ññ™
+;
+java:S2629Ã"$Invoke method(s) only conditionally.(“§œ‰
+;
+java:S2629‘"$Invoke method(s) only conditionally.(§×ÈÉ
+@
+java:S2629¸"$Invoke method(s) only conditionally.(¢ò¬™şÿÿÿÿ
+;
+java:S2629Á"$Invoke method(s) only conditionally.(Õ°Ñä
+;
+java:S2629ÿ"$Invoke method(s) only conditionally.(­ 
+c
+java:S2095ı"LUse try-with-resources or close this "BufferedReader" in a "finally" clause.(Ã’›³
+7
+java:S1170B"!Make this final field static too.(¤“öî
+7
+java:S1170C"!Make this final field static too.(·¶æİ
+—
+java:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(€“°Â
+œ
+java:S1186O"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(’ïô¼ÿÿÿÿÿ
+i	java:S100•"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷Ø¢áÿÿÿÿÿ
+ˆ
+java:S1130•"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(÷Ø¢áÿÿÿÿÿ
+ƒ
+java:S1130°"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ğÒî×
+T	java:S106Ç"9Replace this use of System.out or System.err by a logger.(´Œ¤ùÿÿÿÿ
+V
+java:S6213÷":Rename this variable to not match a restricted identifier.(Œ‰è€ûÿÿÿÿ
+V	java:S899…";Do something with the "boolean" value returned by "delete".(²Œ­ûÿÿÿÿ
+j
+java:S4042…"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(²Œ­ûÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(À¶´“
+ˆ
+java:S1130ç"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(²…›˜ÿÿÿÿÿ
+]
+java:S3457ğ"AFormat specifiers should be used instead of string concatenation.(ëù‚£øÿÿÿÿ
+ƒ
+java:S1130Š"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ŠœÈ²
+X
+java:S3457½"AFormat specifiers should be used instead of string concatenation.(íöíÊ
+h
+java:S3457Ã"Q%n should be used in place of \n to produce the platform-specific line separator.(“§œ‰
+R	java:S125ì"<This block of commented-out lines of code should be removed.(ÜÊº†
+O	java:S106û"9Replace this use of System.out or System.err by a logger.(Â÷éÑ
+R	java:S125ü"<This block of commented-out lines of code should be removed.(âæ³“
+O	java:S106½"9Replace this use of System.out or System.err by a logger.(Û‚öà
+O	java:S106¿"9Replace this use of System.out or System.err by a logger.(Úìş†
+A
+java:S1197Ş"*Move the array designators [] to the type.(€Ñé¥
+h
+java:S3457ÿ"Q%n should be used in place of \n to produce the platform-specific line separator.(­ 
+A
+java:S5960r"+Remove this assertion from production code.(¥´³†
