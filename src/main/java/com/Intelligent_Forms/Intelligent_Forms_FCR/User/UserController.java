@@ -40,7 +40,7 @@ public class UserController {
                         .generatePdf(formId, userId));
     }
 
-    @GetMapping(path = "{userID}")
+    @GetMapping(path = "/{userID}")
     public UserDto getUserById(@PathVariable("userID") UUID userID) {
         return userService.getUserById(userID);
     }

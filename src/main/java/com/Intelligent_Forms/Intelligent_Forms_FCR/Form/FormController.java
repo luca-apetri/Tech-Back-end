@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("forms")
+@RequestMapping("/forms")
 public class FormController {
     private final FormService formService;
     @GetMapping("/{userId}")
@@ -18,7 +18,7 @@ public class FormController {
         return formService.getAllForms(userId);
     }
 
-    @DeleteMapping(path = "{FormID}")
+    @DeleteMapping(path = "/{FormID}")
     public void deleteForm(@PathVariable("FormID") UUID formID)
     {
         formService.deleteForm(formID);
